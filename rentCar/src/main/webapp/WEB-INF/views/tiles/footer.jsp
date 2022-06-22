@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>¿Œµ¶Ω∫</h1>
+
+<h1>footer</h1>
+
 </body>
 </html>
