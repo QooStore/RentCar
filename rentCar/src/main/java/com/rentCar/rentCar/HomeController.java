@@ -1,6 +1,7 @@
 package com.rentCar.rentCar;
 
 import java.text.DateFormat;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,14 +20,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rentCar.car.service.CarService;
 
+//import com.rentCar.car.service.CarService;
+
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
 	
-	@Autowired
-	CarService carService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -47,17 +48,13 @@ public class HomeController {
 	}
 	
 	//index 인기상품
-	@GetMapping(value = "/car")
-	@ResponseBody
-	public String popularCar(){
-		List<Map<String, String>> list = new ArrayList<>();
-		list = carService.popularCarList();
-		
-		for(Map<String, String> map : list) {
-			System.out.println(map.get("CAR_MODEL"));
-		}
-		
-		return "car";
+	@Autowired
+	private CarService carService;
+	
+	@RequestMapping("test")
+	public String test(Model model){
+		model.addAttribute("popularCarList", carService.popularCarList());
+		return "test/car_popularList";
 	}
 	
 }

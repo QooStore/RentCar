@@ -1,5 +1,7 @@
 package com.rentCar.car.dto;
 
+import lombok.Data;
+
 //CREATE TABLE "car" (
 //		   "car_model" VARCHAR2(20) NOT NULL, -- 차량모델
 //		   "car_size"  VARCHAR2(20) NULL,     -- 차량크기
@@ -8,12 +10,13 @@ package com.rentCar.car.dto;
 //		   "car_price" VARCHAR2(20) NULL      -- 가격
 //		);
 
+@Data
 public class CarDTO {
-	private String carModel;
-	private String carSize;
-	private String carType;
-	private String carMade;
-	private String carPrice;
+	private String carModel; // 차량모델
+	private String carSize; // 차량크기
+	private String carType; //차량종류
+	private String carMade; //제조사
+	private String carPrice; //가격
 	
 	public String getCarModel() {
 		return carModel;

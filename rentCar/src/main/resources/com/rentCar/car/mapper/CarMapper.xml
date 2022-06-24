@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rentCar.car.mapper.CarMapper">
+
+	<select id="popularCarList" resultType="com.rentCar.car.dto.CarDTO">
+	
+	select * from "car"
+	<!-- "car_model", "car_size", "car_type", "car_made", "car_price" -->
+	
+	</select>
+
+</mapper>

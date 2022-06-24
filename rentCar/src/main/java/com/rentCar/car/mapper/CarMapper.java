@@ -1,10 +1,12 @@
 package com.rentCar.car.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
+import com.rentCar.car.dto.CarDTO;
+
 import java.util.List;
-import java.util.Map;
+
+import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface CarMapper {
-	public List<Map<String, String>> popularCarList();
+	public List<CarDTO> popularCarList();
 }
