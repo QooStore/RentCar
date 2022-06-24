@@ -233,3 +233,14 @@ ALTER TABLE "comment"
       REFERENCES "member" ( -- 회원
          "member_id" -- 회원id
       );
+	  
+	  -- index 자동차 목록에 추가
+insert into "car" values ('티볼리','소형','가솔린','쌍용',100000);
+insert into "car" values ('소나타','중형','가솔린','현대',150000);
+insert into "car" values ('셀토스','소형','가솔린','기아',100000);
+insert into "car" values ('팰리세이드','대형','가솔린','현대',200000);
+insert into "car" values ('쏘렌토','SUV','디젤','기아',150000);
+insert into "car" values ('니로EV','소형','전기','기아',100000);
+insert into "car" values ('테슬라모델3','중형','전기','테슬라',250000);
+insert into "car" values ('아반떼','중형','디젤','현대',100000);
+select * from "car";

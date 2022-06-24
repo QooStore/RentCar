@@ -9,43 +9,41 @@ package com.rentCar.car.dto;
 //		);
 
 public class CarDTO {
-	private String car_model;
-	private String car_size;
-	private String car_type;
-	private String car_made;
-	private String car_price;
+	private String carModel;
+	private String carSize;
+	private String carType;
+	private String carMade;
+	private String carPrice;
 	
-	
-	public String getCar_model() {
-		return car_model;
+	public String getCarModel() {
+		return carModel;
 	}
-	public void setCar_model(String car_model) {
-		this.car_model = car_model;
+	public void setCarModel(String carModel) {
+		this.carModel = carModel;
 	}
-	public String getCar_size() {
-		return car_size;
+	public String getCarSize() {
+		return carSize;
 	}
-	public void setCar_size(String car_size) {
-		this.car_size = car_size;
+	public void setCarSize(String carSize) {
+		this.carSize = carSize;
 	}
-	public String getCar_type() {
-		return car_type;
+	public String getCarType() {
+		return carType;
 	}
-	public void setCar_type(String car_type) {
-		this.car_type = car_type;
+	public void setCarType(String carType) {
+		this.carType = carType;
 	}
-	public String getCar_made() {
-		return car_made;
+	public String getCarMade() {
+		return carMade;
 	}
-	public void setCar_made(String car_made) {
-		this.car_made = car_made;
+	public void setCarMade(String carMade) {
+		this.carMade = carMade;
 	}
-	public String getCar_price() {
-		return car_price;
+	public String getCarPrice() {
+		return carPrice;
 	}
-	public void setCar_price(String car_price) {
-		this.car_price = car_price;
+	public void setCarPrice(String carPrice) {
+		this.carPrice = carPrice;
 	}
-	
 	
 }
