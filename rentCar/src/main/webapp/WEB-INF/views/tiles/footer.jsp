@@ -8,7 +8,11 @@
 </head>
 <body>
 
+<<<<<<< Updated upstream
 <h1>footer</h1>
+=======
+<h1>footerTest2</h1>
+>>>>>>> Stashed changes
 
 </body>
 </html>
