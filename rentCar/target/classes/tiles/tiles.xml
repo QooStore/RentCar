@@ -16,9 +16,4 @@
       <put-attribute name="body" value="/WEB-INF/views/index.jsp" />
    </definition>
 
-<definition name="notice" extends="baseLayout">
-      <put-attribute name="title" value="공지" />
-      <put-attribute name="body" value="/WEB-INF/views/board/notice.jsp" />
-   </definition>
-
 </tiles-definitions>

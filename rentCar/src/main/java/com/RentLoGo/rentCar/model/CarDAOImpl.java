@@ -1,10 +1,9 @@
-package com.rentCar.car.dao;
+package com.RentLoGo.rentCar.model;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
-import com.rentCar.car.dto.CarDTO;
 
 //@Repository("carDAO")
 public class CarDAOImpl  implements CarDAO{

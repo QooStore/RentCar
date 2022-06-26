@@ -1,4 +1,4 @@
-package com.rentCar.car.dto;
+package com.RentLoGo.rentCar.model;
 
 //CREATE TABLE "car" (
 //		   "car_model" VARCHAR2(20) NOT NULL, -- 차량모델

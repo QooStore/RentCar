@@ -1,8 +1,6 @@
-package com.rentCar.car.dao;
+package com.RentLoGo.rentCar.model;
 
 import org.springframework.dao.DataAccessException;
-
-import com.rentCar.car.dto.CarDTO;
 
 public interface CarDAO {
 	public void insertNewCar(CarDTO carDTO) throws DataAccessException;
