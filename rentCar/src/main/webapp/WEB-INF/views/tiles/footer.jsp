@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,13 +21,13 @@
             CONTACT US
         </div>
         <div>
-            <div>��ǥ�̻� ȫ�浿</div>
-            <div>����� ��Ϲ�ȣ 123-45-67890</div>
-            <div>����� �ϻ굿�� ���η� 88</div>
+            <div>대표이사 홍길동</div>
+            <div>사업자 등록번호 123-45-67890</div>
+            <div>고양시 일산동구 마두로 88</div>
             <div>All Rights Reserved</div>
         </div>
         <div>
-            <div>��������</div>
+            <div>고객센터</div>
             <div>031-873-2273</div>
         </div>
     </footer>

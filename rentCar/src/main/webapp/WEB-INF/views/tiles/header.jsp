@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
@@ -19,22 +19,22 @@
             <a href="#">RentLoGo</a>
         </div>
         <div>
-            <a href="#">´Ü±â ·»ÅÍÄ«</a>
+            <a href="#">ë‹¨ê¸° ë Œí„°ì¹´</a>
             <ul>
-                <li><a href="#">¿¹¾àÇÏ±â</a></li>
-                <li><a href="#">ÀÌ¿ë¾È³»</a></li>
+                <li><a href="#">ì˜ˆì•½í•˜ê¸°</a></li>
+                <li><a href="#">ì´ìš©ì•ˆë‚´</a></li>
             </ul>
         </div>
-        <div><a href="#">°øÁö»çÇ×</a></div>
-        <div><a href="#">°í°´¼¾ÅÍ</a></div>
+        <div><a href="#">ê³µì§€ì‚¬í•­</a></div>
+        <div><a href="#">ê³ ê°ì„¼í„°</a></div>
         <div class="list">
             <input type="checkbox" class="member_menu" id="member_menu" />
             <label for="member_menu" class="burger"><i class="fa-solid fa-bars"></i></label>
             <ul>
-                <li><a href="#"><i class="fa-solid fa-plus headerIcons"></i>È¸¿ø°¡ÀÔ</a></li>
-                <li><a href="#"><i class="fa-solid fa-clipboard-user headerIcons"></i>·Î±×ÀÎ</a></li>
-                <li><a href="#"><i class="fa-solid fa-align-right headerIcons"></i>¿¹¾àÁ¤º¸</a></li>
-                <li><a href="#"><i class="fa-solid fa-basket-shopping headerIcons"></i>Àå¹Ù±¸´Ï</a></li>
+                <li><a href="#"><i class="fa-solid fa-plus headerIcons"></i>íšŒì›ê°€ìž…</a></li>
+                <li><a href="#"><i class="fa-solid fa-clipboard-user headerIcons"></i>ë¡œê·¸ì¸</a></li>
+                <li><a href="#"><i class="fa-solid fa-align-right headerIcons"></i>ì˜ˆì•½ì •ë³´</a></li>
+                <li><a href="#"><i class="fa-solid fa-basket-shopping headerIcons"></i>ìž¥ë°”êµ¬ë‹ˆ</a></li>
             </ul>
         </div>
     </header>

@@ -1,10 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>∑ª∆Æ«œ∞Ì √‡¡¶∞°¿⁄!</title>
+<title>Î†åÌä∏ÌïòÍ≥† Ï∂ïÏ†úÍ∞ÄÏûê!</title>
+<script src="/rentCar/resources/jQuery/jQuery3.6.js"></script>
 
      <style>    
         .event {
@@ -26,7 +29,15 @@
         	margin: 100px auto;
         }
         
-        </style>
+        .carousel-indicators > button {
+        	visibility: hidden;
+        }
+        .carousel-caption {
+        	font-weight: bold;
+        	text-shadow: -1px 0 2px #000, 0 1px 2px #000, 1px 0 2px #000, 0 -1px 2px #000;
+        }
+        
+     </style>
         
 </head>
 <body>
@@ -52,34 +63,31 @@
         </button>
       </div>
 
+		
       <div id="carouselExampleCaptions" class="carousel slide favorites favorites_outside" data-bs-ride="false">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="6" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="7" aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
-          <div class="carousel-item active favorites">
-            <img src="https:via.placeholder.com/200x200.png" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>First slide label</h5>
-              <p>Some representative placeholder content for the first slide.</p>
-            </div>
-          </div>
-          <div class="carousel-item favorites">
-            <img src="https:via.placeholder.com/200x200.png" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Second slide label</h5>
-              <p>Some representative placeholder content for the second slide.</p>
-            </div>
-          </div>
-          <div class="carousel-item favorites">
-            <img src="https:via.placeholder.com/200x200.png" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Third slide label</h5>
-              <p>Some representative placeholder content for the third slide.</p>
-            </div>
-          </div>
+        
+          <c:forEach var="car" items="${list }">
+	          <div class="carousel-item active favorites">
+	            <img src="${contextPath }/download?imageFileName=${car.carModel }.png" class="d-block w-100" alt="...">
+	            <div class="carousel-caption d-none d-md-block">
+	              <h5>${car.carModel }</h5>
+	              <p>${car.carPrice }</p>
+	            </div>
+	          </div>
+          </c:forEach>
+
+          
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
