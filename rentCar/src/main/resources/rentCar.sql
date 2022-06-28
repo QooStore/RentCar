@@ -234,7 +234,7 @@ ALTER TABLE "comment"
          "member_id" -- 회원id
       );
 	  
-	  -- index 자동차 목록에 추가
+-- index 자동차 목록에 추가
 insert into "car" values ('티볼리','소형','가솔린','쌍용',100000);
 insert into "car" values ('소나타','중형','가솔린','현대',150000);
 insert into "car" values ('셀토스','소형','가솔린','기아',100000);
