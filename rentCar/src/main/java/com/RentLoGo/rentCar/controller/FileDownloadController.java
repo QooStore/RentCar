@@ -1,4 +1,4 @@
-package com.RentLoGo.rentCar.model;
+package com.RentLoGo.rentCar.controller;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
