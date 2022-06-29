@@ -1,6 +1,7 @@
 package com.RentLoGo.member.model;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 import lombok.Data;
 
