@@ -44,13 +44,13 @@
     <div id="carouselExampleControls" class="carousel slide event event_outside" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active event">
-            <img src="/rentCar/resources/images/event01.png" class="d-block w-100" alt="...">
+            <img src="https:via.placeholder.com/200x200.png" class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item active event">
-            <img src="/rentCar/resources/images/event02.png" class="d-block w-100" alt="...">
+            <img src="https:via.placeholder.com/200x200.png" class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item active event">
-            <img src="/rentCar/resources/images/event03.png" class="d-block w-100" alt="...">
+            <img src="https:via.placeholder.com/200x200.png" class="d-block w-100" alt="...">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">

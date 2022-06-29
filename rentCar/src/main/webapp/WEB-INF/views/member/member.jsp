@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>회원가입</title>
 </head>
 <body>
-
+	<section id="container">
+		<form action="/member/register" method="post">
+		</form>
+	</section>
 </body>
 </html>
