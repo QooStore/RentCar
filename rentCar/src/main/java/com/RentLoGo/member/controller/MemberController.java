@@ -1,42 +1,18 @@
 package com.RentLoGo.member.controller;
 
-import java.util.logging.Logger;
-
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import javax.servlet.http.HttpServletRequest;
 
 import com.RentLoGo.member.model.MemberDTO;
-import com.RentLoGo.member.service.MemberService;
 
-@Controller
-@RequestMapping("/member")
-public class MemberController {
-
+public interface MemberController {
 	
-	@Autowired
-	private MemberService memberservice;
+	public String form();
+	public String join(HttpServletRequest request) throws Exception;
+	public String joinPOST(MemberDTO member) throws Exception;
 	
-	@RequestMapping(value="join", method=RequestMethod.GET)
-	public void joinGET() {
-		System.out.println("회원 가입 페이지 >>>>>>>>>>>>>>");
-	}
-	
-	@RequestMapping(value="join", method=RequestMethod.POST)
-	public String joinPOST(MemberDTO member) throws Exception{
-		
-		memberservice.memberJoin(member);
-		
-		System.out.println("회원 가입 성공 ~~~~~~");
-		
-		return "redirect:/index";
-	}
-	
-	@RequestMapping(value="login", method=RequestMethod.GET)
-	public void loginGET() {
-		System.out.println("로그인 페이지 >>>>>>>>>>>>>>");
-	}
-	
+	//회원정보수정
+	public String modify(HttpServletRequest request);
+	//회원조회(manage)
+	public String select(HttpServletRequest request);
+	public String listMember(HttpServletRequest request);
 }

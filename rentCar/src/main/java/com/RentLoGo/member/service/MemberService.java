@@ -1,14 +1,16 @@
 package com.RentLoGo.member.service;
 
+import java.util.List;
+
 import com.RentLoGo.member.model.MemberDTO;
 
 public interface MemberService {
-
+	//회원가입
 	public void memberJoin(MemberDTO member) throws Exception;
-
+	//회원탈퇴
 	public void memberDelete(MemberDTO member) throws Exception;
-	
-	public void memberUpdate(MemberDTO member) throws Exception;
-	
-	public void memberSelect(MemberDTO member) throws Exception;
+	//회원정보수정
+	public void memberModify(MemberDTO member) throws Exception;
+	//회원조회(manage)
+	public List<MemberDTO> selectAllMember();
 }

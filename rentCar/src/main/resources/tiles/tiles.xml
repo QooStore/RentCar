@@ -4,7 +4,6 @@
   "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
   
 <tiles-definitions>
-   
    <definition name="baseLayout"  template="/WEB-INF/views/tiles/base.jsp">
       <put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
       <put-attribute name="body" value="" />
@@ -15,4 +14,16 @@
       <put-attribute name="body" value="/WEB-INF/views/index.jsp" />
    </definition>
 
+   <definition name="member" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/member/member.jsp" />
+   </definition>
+   
+   <definition name="modify" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/member/modify.jsp" />
+   </definition>
+   
+   <definition name="manage" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/management/member_manage.jsp" />
+   </definition>
+   
 </tiles-definitions>

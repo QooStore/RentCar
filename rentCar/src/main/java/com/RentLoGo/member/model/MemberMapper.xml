@@ -31,12 +31,12 @@
 <!-- 회원탈퇴 (modify.jsp에 회원탈퇴 버튼)-->
 	<delete id="memberDelete" parameterType="memberDTO">
       <![CDATA[
-		delete from "member"
+		delete from "member" where "member_id" = #{memberId} and "member_pw" = #{memberPw} 
       ]]>
 	</delete>
 	
 <!-- 회원정보수정 (modify.jsp)-->
-	<update id="memberUpdate" parameterType="memberDTO">
+	<update id="memberModify" parameterType="memberDTO">
       <![CDATA[
 		update "member" set
 			"member_pw" = #{memberPw}, "member_name" = #{memberName}, "member_birth" = #{memberBirth},
@@ -46,7 +46,7 @@
 	</update>
 	
 <!-- 회원정보조회 (member_manage.jsp)-->
-	<select id="memberSelect" resultMap="memberResult">
+	<select id="selectAllMember" resultMap="memberResult">
       <![CDATA[
 		select * from "member"
       ]]>

@@ -1,22 +1,17 @@
 <%@page import="com.RentLoGo.member.model.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>회원 관리</title>
 </head>
 <body>
 <h1>회원 관리</h1>
-<%-- <%
-    request.setCharacterEncoding("utf-8");
-    String name_1 = request.getParameter("name");
-    MemberDTO memberDTO = new MemberDTO();
-    memberVO.setName(name_1);
-    MemberDAO dao = new MemberDAO();
-    List membersList = dao.listmembers(memberVO);
-%> --%>
+
 <table border=1 style="width:800px;align:center">
     <tr align=center bgcolor="#ffc224">
         <th>아이디</th>
@@ -28,27 +23,18 @@
         <th>이메일</th>
         <th>가입일자</th>
     </tr>
-<%--     <%
-        for(int i=0; i<membersList.size(); i++){
-            MemberVO vo = (MemberVO) membersList.get(i);
-            String id=vo.getId();
-            String pwd = vo.getPwd();
-            String name = vo.getName();
-            String email = vo.getEmail();
-            Date joinDate = vo.getJoinDate();
-        
-    %>
-    
-    <tr align="center">
-        <td><%= id %></td>
-        <td><%= pwd %></td>
-        <td><%= name %></td>
-        <td><%= email %></td>
-        <td><%= joinDate %></td>
-    </tr>
-    <%    
-        }
-    %> --%>
+    <c:forEach var="member" items="${list }">
+ 		<tr align=center>
+        	<th>${member.memberId }</th>
+        	<th>${member.memberPw }</th>
+        	<th>${member.memberClass }</th>
+	        <th>${member.memberName }</th>
+	        <th>${member.memberBirth }</th>
+	        <th>${member.memberPhone }</th>
+	        <th>${member.memberEmail }</th>
+	        <th>${member.memberDate }</th>
+    	</tr>
+     </c:forEach>
 </table>
 </body>
 </html>

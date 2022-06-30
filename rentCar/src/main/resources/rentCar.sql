@@ -244,3 +244,8 @@ insert into "car" values ('니로EV','소형','전기','기아',100000);
 insert into "car" values ('테슬라모델3','중형','전기','테슬라',250000);
 insert into "car" values ('아반떼','중형','디젤','현대',100000);
 select * from "car";
+
+-- member (회원) 추가
+select * from "member";
+insert into "member" values ('aaa','aaaa','1','에이','980314','00011112222','aa@naver.com',sysdate);
+insert into "member" values ('bbb','bbbb','1','비비','890704','00077774444','bb@naver.com',sysdate);

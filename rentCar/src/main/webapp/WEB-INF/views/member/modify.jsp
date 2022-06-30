@@ -18,12 +18,7 @@
 				<div class="subjecet">
 					<span>회원정보수정</span>
 				</div>
-				<div class="id_wrap">
-					<div class="id_name">아이디</div>
-					<div class="id_input_box">
-						<input class="id_input" name="memberId">
-					</div>
-				</div>
+
 				<div class="pw_wrap">
 					<div class="pw_name">비밀번호</div>
 					<div class="pw_input_box">
@@ -42,16 +37,30 @@
 						<input class="user_input" name="memberName">
 					</div>
 				</div>
+				<div class="birth_wrap">
+					<div class="birth_name">생년월일</div>
+					<div class="birth_input_box">
+						<input class="birth_input" name="memberBirth">
+					</div>
+				</div>
 				<div class="mail_wrap">
 					<div class="mail_name">이메일</div>
 					<div class="mail_input_box">
 						<input class="mail_input" name="memberEmail">
 					</div>
+				<div class="user_wrap">
+					<div class="user_phone">전화번호</div>
+					<div class="phone_input_box">
+						<input class="phone_input" name="memberPhone">
+				</div>
 						<div class="clearfix"></div>
 					</div>
 				</div>
 				<div class="modify_button_wrap">
 					<input type="button" class="modify_button" value="수정하기">
+				</div>
+				<div class="delete_button_wrap">
+					<input type="button" class="delete_button" value="회원탈퇴">
 				</div>
 			</div>
 		</form>
@@ -60,10 +69,18 @@
 <script>
 
 $(document).ready(function(){
-	//회원가입 버튼(회원가입 기능 작동)
+	//회원정보수정 버튼(회원정보수정 기능 작동)
 	$(".modify_button").click(function(){
 		$("#modify_form").attr("action", "/member/modify");
 		$("#modify_form").submit();
+	});
+});
+
+$(document).ready(function(){
+	//회원탈퇴 버튼(회원탈퇴 기능 작동)
+	$(".delete_button").click(function(){
+		//$("#modify_form").attr("action", "/member/modify");
+		//$("#modify_form").submit();
 	});
 });
 
