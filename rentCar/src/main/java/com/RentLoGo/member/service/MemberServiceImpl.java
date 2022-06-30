@@ -14,7 +14,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public void memberJoin(MemberDTO member) throws Exception {
-		
+		membermapper.memberJoin(member);
 	}
 	
 	@Override
