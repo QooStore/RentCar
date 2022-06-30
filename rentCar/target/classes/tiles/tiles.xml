@@ -14,4 +14,8 @@
       <put-attribute name="body" value="/WEB-INF/views/index.jsp" />
    </definition>
 
+   <definition name="member" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/member/member.jsp" />
+   </definition>
+   
 </tiles-definitions>

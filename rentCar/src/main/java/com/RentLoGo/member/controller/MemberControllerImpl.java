@@ -30,34 +30,26 @@ public class MemberControllerImpl implements MemberController{
 	}
 	
 	@Override
-	@RequestMapping("/member.do")
-	public String join(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		System.out.println("회원 가입 페이지 >>>>>>>>>>>>>>");
-		
-		String viewName = (String) request.getAttribute("viewName");
-		viewName = viewName.substring(viewName.lastIndexOf("/")+1, viewName.length());
-		
-		return viewName;
-	}
-	
-//	@RequestMapping("/member.do")
-//	public String joinGET(HttpServletRequest request) {
-//		System.out.println("회원 가입 페이지 >>>>>>>>>>>>>>");
-//		
-//		String viewName = (String) request.getAttribute("viewName");
-//		viewName = viewName.substring(viewName.lastIndexOf("/")+1, viewName.length());
-//		
-//		return viewName;
-//	}
-	
-	@RequestMapping(value="join", method=RequestMethod.POST)
+	@RequestMapping(value="memberJoin", method=RequestMethod.POST)
 	public String joinPOST(MemberDTO member) throws Exception{
+		System.out.println("회원 가입 페이지 >>>>>>>>>>>>>>");
 		memberservice.memberJoin(member);
 		
 		System.out.println("회원 가입 성공 ~~~~~~");
 		
 		return "redirect:/index";
+	}
+	
+	@Override
+	@RequestMapping("/member.do")
+	public String join(HttpServletRequest request){
+		// TODO Auto-generated method stub
+		System.out.println("회원 가입 페이지 >>>>>>>>>>>>>>");
+	
+		String viewName = (String) request.getAttribute("viewName");
+		viewName = viewName.substring(viewName.lastIndexOf("/")+1, viewName.length());
+		
+		return viewName;
 	}
 	
 	@RequestMapping(value="login", method=RequestMethod.GET)
