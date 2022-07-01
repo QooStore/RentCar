@@ -27,6 +27,13 @@
                      #{memberBirth}, #{memberPhone}, #{memberEmail}) 
       ]]>
 	</insert>
+<!-- 로그인(login.jsp) -->
+	<select id="memberLogin" resultType="memberDTO">
+	<![CDATA[
+		select "member_id", "member_pw" from "member" where "member_id" = #{memberId} and "member_pw"= #{memberPw}
+	]]>
+	
+	</select>
 	
 <!-- 회원탈퇴 (modify.jsp에 회원탈퇴 버튼)-->
 	<delete id="memberDelete" parameterType="memberDTO">

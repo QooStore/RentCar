@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.RentLoGo.member.model.MemberDTO;
 import com.RentLoGo.member.service.MemberService;
@@ -31,14 +33,37 @@ public class MemberControllerImpl implements MemberController{
 		return "member";
 	}
 	
+//	@Override
+//	@RequestMapping(value="/memberJoin.do", method=RequestMethod.POST)
+//	public String joinPOST(MemberDTO member) throws Exception{
+//		
+//		System.out.println("가입 페이지 진입>>>>>>>>>>>>>>");
+//		memberservice.memberJoin(member);
+//		
+//		System.out.println("회원 가입 성공 ~~~~~~");
+//		
+//		return "redirect:/index";
+//	}
 	@Override
-	@RequestMapping(value="memberJoin", method=RequestMethod.POST)
-	public String joinPOST(MemberDTO member) throws Exception{
-		System.out.println("회원 가입 페이지 >>>>>>>>>>>>>>");
-		memberservice.memberJoin(member);
+	@RequestMapping(value="/memberJoin", method=RequestMethod.POST)
+	public String join(@RequestParam("memberId") String id,
+					   @RequestParam("memberPw") String pw,
+					   @RequestParam("memberClass")char cl,
+					   @RequestParam("memberName") String name,
+					   @RequestParam("memberBirth") String birth,
+					   @RequestParam("memberPhone") String phone,
+					   @RequestParam("memberEmail") String email,
+					   Model model) {
+		System.out.println("id : >>>>>" + id);
+		model.addAttribute("id", id);
+		model.addAttribute("pw", pw);
+		model.addAttribute("memberClass", '1');
+		model.addAttribute("name", name);
+		model.addAttribute("birth", birth);
+		model.addAttribute("phone", phone);
+		model.addAttribute("email", email);
 		
-		System.out.println("회원 가입 성공 ~~~~~~");
-		
+		System.out.println("회원가입 성공~~~~");
 		return "redirect:/index";
 	}
 	
@@ -54,9 +79,21 @@ public class MemberControllerImpl implements MemberController{
 		return viewName;
 	}
 	
-	@RequestMapping(value="login", method=RequestMethod.GET)
-	public void loginGET() {
-		System.out.println("로그인 페이지 >>>>>>>>>>>>>>");
+//	@RequestMapping(value="member/login", method=RequestMethod.GET)
+//	public void loginGET() {
+//		System.out.println("로그인 페이지 >>>>>>>>>>>>>>");
+//	}
+	
+	//로그인 화면
+	@Override
+	@RequestMapping("/login.do")
+	public String login(HttpServletRequest request) {
+		System.out.println("로그인 화면 >>>>>>>>>>>>>>");
+		
+		String viewName = (String) request.getAttribute("viewName");
+		viewName = viewName.substring(viewName.lastIndexOf("/")+1, viewName.length());
+		
+		return viewName;
 	}
 
 	// 회원정보수정
