@@ -18,12 +18,20 @@
       <put-attribute name="body" value="/WEB-INF/views/member/member.jsp" />
    </definition>
    
+   <definition name="login" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/member/login.jsp" />
+   </definition>
+   
    <definition name="modify" extends="baseLayout">
       <put-attribute name="body" value="/WEB-INF/views/member/modify.jsp" />
    </definition>
    
    <definition name="manage" extends="baseLayout">
       <put-attribute name="body" value="/WEB-INF/views/management/member_manage.jsp" />
+   </definition>
+   
+   <definition name="agree" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/member/clause_agree.jsp" />
    </definition>
    
 </tiles-definitions>

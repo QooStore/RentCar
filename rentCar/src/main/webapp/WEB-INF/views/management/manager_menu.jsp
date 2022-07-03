@@ -13,6 +13,7 @@
     <script src="https://kit.fontawesome.com/166dc8a7b4.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/rentCar/resources/css/header.css">
 </head>
+
 <body>
     <header>
         <div class="logo">
@@ -31,9 +32,9 @@
             <input type="checkbox" class="member_menu" id="member_menu" />
             <label for="member_menu" class="burger"><i class="fa-solid fa-bars"></i></label>
             <ul>
-                <li><a href="/manage/member"><i class="fa-solid fa-plus headerIcons"></i>회원관리</a></li>
-                <li><a href="#"><i class="fa-solid fa-clipboard-user headerIcons"></i>예약관리</a></li>
-                <li><a href="#"><i class="fa-solid fa-align-right headerIcons"></i>렌터카관리</a></li>
+                <li><a href="/manage/member"><i class="fa fa-address-card" aria-hidden="true"></i>회원관리</a></li>
+                <li><a href="#"><i class="fa fa-list-alt" aria-hidden="true"></i>예약관리</a></li>
+                <li><a href="#"><i class="fa fa-car" aria-hidden="true"></i>렌터카관리</a></li>
             </ul>
         </div>
     </header>

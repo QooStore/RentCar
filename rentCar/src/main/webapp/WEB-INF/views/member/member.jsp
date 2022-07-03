@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@
 </head>
 <body>
 	<div class="wrapper">
-		<form id="join_form" method="post">
+		<form action="<c:url value='/member/memberJoin.do'/>" id="join_form" method="post">
 			<div class="wrap">
 				<div class="subjecet">
 					<span>회원가입</span>
@@ -74,20 +75,20 @@
 					</div>
 				</div>
 				<div class="join_button_wrap">
-					<input type="button" class="join_button" value="가입하기">
+					<input type="submit" class="join_button" value="가입하기">
 				</div>
 			</div>
 		</form>
 	</div>
 
 	<script>
-		$(document).ready(function() {
+/* 		$(document).ready(function() {
 			//회원가입 버튼(회원가입 기능 작동)
 			$(".join_button").click(function() {
 				$("#join_form").attr("action", "/member/memberJoin");
 				$("#join_form").submit();
 			});
-		});
+		}); */
 		// '출생 연도' 셀렉트 박스 option 목록 동적 생성
 		const birthYearEl = document.querySelector('#birth-year')
 		// option 목록 생성 여부 확인

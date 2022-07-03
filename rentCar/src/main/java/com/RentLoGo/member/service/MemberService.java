@@ -7,6 +7,8 @@ import com.RentLoGo.member.model.MemberDTO;
 public interface MemberService {
 	//회원가입
 	public void memberJoin(MemberDTO member) throws Exception;
+	//로그인
+	public void memberLogin(MemberDTO member) throws Exception;
 	//회원탈퇴
 	public void memberDelete(MemberDTO member) throws Exception;
 	//회원정보수정

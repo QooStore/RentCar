@@ -14,16 +14,15 @@
 
 <table border=1 style="width:800px;align:center">
     <tr align=center bgcolor="#ffc224">
-        <th>아이디</th>
-        <th>비밀번호</th>
-        <th>회원분류</th>
-        <th>이름</th>
-        <th>생년월일</th>
-        <th>전화번호</th>
-        <th>이메일</th>
-        <th>가입일자</th>
+        <th>차량번호</th>
+        <th>모델</th>
+        <th>색상</th>
+        <th>크기</th>
+        <th>종류</th>
+        <th>주행거리</th>
+        <th>제조사</th>
     </tr>
-<%--     <c:forEach var="member" items="${list }">
+<%--     <c:forEach var="rentCar" items="${list }">
  		<tr align=center>
         	<th>${member.memberId }</th>
         	<th>${member.memberPw }</th>

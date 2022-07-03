@@ -14,20 +14,30 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	MemberMapper membermapper;
+//	@Autowired
+//	MemberService memberservice;
+	
 	
 	@Override
 	public void memberJoin(MemberDTO member) throws Exception {
 		membermapper.memberJoin(member);
+		//memberservice.memberJoin(member);
+	}
+	
+	@Override
+	public void memberLogin(MemberDTO member) throws Exception {
+		//memberservice.memberLogin(member);
+		membermapper.memberLogin(member);
 	}
 	
 	@Override
 	public void memberDelete(MemberDTO member) throws Exception {
-		
+		membermapper.memberDelete(member);
 	}
 	
 	@Override
 	public void memberModify(MemberDTO member) throws Exception {
-		
+		membermapper.memberModify(member);
 	}
 	
 	@Override

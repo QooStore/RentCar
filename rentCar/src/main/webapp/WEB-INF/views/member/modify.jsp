@@ -57,10 +57,10 @@
 					</div>
 				</div>
 				<div class="modify_button_wrap">
-					<input type="button" class="modify_button" value="수정하기">
+					<input type="submit" class="modify_button" value="수정하기">
 				</div>
 				<div class="delete_button_wrap">
-					<input type="button" class="delete_button" value="회원탈퇴">
+					<input type="submit" class="delete_button" value="회원탈퇴"/>
 				</div>
 			</div>
 		</form>
@@ -71,18 +71,19 @@
 $(document).ready(function(){
 	//회원정보수정 버튼(회원정보수정 기능 작동)
 	$(".modify_button").click(function(){
-		$("#modify_form").attr("action", "/member/modify");
-		$("#modify_form").submit();
+		alert("수정되었습니다.")
 	});
 });
 
 $(document).ready(function(){
 	//회원탈퇴 버튼(회원탈퇴 기능 작동)
 	$(".delete_button").click(function(){
-		//$("#modify_form").attr("action", "/member/modify");
-		//$("#modify_form").submit();
+		if(!confirm('탈퇴하시겠습니까?')){
+			return false;
+		}
 	});
-});
+}); 
+
 
 </script>
 </body>
