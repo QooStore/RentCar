@@ -2,14 +2,14 @@ package com.RentLoGo.member.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.RentLoGo.member.model.MemberDTO;
 
 public interface MemberController {
 	
 	String form(HttpServletRequest request);
-	public String join(MemberDTO member ,Model model);
+	public String join(MemberDTO member, RedirectAttributes redirect);
 	
 	//로그인
 	public String login(HttpServletRequest request);

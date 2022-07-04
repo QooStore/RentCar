@@ -67,7 +67,7 @@
      </style>
 
 <c:choose>
-	<c:when test="${joinResult == 'finished' }">
+	<c:when test="${info.joinResult == 'finished' }">
 			<script>
 			     $(function() {
 			     	$('#congratulations').css({visibility: 'visible'});

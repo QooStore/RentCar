@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.RentLoGo.member.model.MemberDTO;
 import com.RentLoGo.member.service.MemberService;
@@ -33,12 +33,12 @@ public class MemberControllerImpl implements MemberController{
 	
 	@Override
 	@RequestMapping(value="/memberJoin.do", method=RequestMethod.POST)
-	public String join(MemberDTO member, Model model) {
+	public String join(MemberDTO member, RedirectAttributes redirect) {
 		
 		try {
 			memberService.memberJoin(member);
 			
-			model.addAttribute("joinResult", "finished");
+			redirect.addAttribute("joinResult", "finished");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
