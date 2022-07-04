@@ -23,7 +23,6 @@ public class FileDownloadController {
 	protected void download(@RequestParam("imageFileName") String imageFileName, HttpServletResponse response, HttpServletRequest request) throws Exception {
 		
 		File file = new File(IMAGE_REPOSITORY_PATH + "/" + imageFileName);
-		System.out.println("imageFileName >>>> " + imageFileName);
 		response.setHeader("Cache-Control", "no-cache");
 		response.addHeader("Content-disposition", "attachment;fileName=" + imageFileName); 
 		OutputStream out = response.getOutputStream();

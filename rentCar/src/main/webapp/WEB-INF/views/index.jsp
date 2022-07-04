@@ -1,15 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>렌트하고 축제가자!</title>
 <script src="/rentCar/resources/jQuery/jQuery3.6.js"></script>
 
      <style>    
+     html, body{
+     	height: 100%;
+     }
         .event {
             max-width: 1200px;
             height: 700px;
@@ -36,8 +39,46 @@
         	font-weight: bold;
         	text-shadow: -1px 0 2px #000, 0 1px 2px #000, 1px 0 2px #000, 0 -1px 2px #000;
         }
+        #congratulations {
+        	background-color: rgba(29, 31, 33, 0.6);
+        	width: 100%;
+        	height: 100%;
+        	position: fixed;
+        	top: 0;
+        	left: 0;
+        	z-index: 999;
+        	display: flex;
+        	align-items: center;
+        	justify-content: center;
+        	visibility: hidden;
+        }
+        .joinFinished {
+        	width: 500px;
+        	height: 500px;
+        	background-color: rgba(255, 255, 255, 0.8);
+        	border-radius: 100px;
+        	font-size: 50px;
+        	text-align: center;
+       	    display: flex;
+		    align-items: center;
+		    justify-content: center;
+        }
         
      </style>
+
+<c:choose>
+	<c:when test="${joinResult == 'finished' }">
+			<script>
+			     $(function() {
+			     	$('#congratulations').css({visibility: 'visible'});
+			     	$('#congratulations').click(function() {
+			     		$(this).css({visibility: 'hidden'});
+			     	});
+			     });
+			</script>
+	</c:when>
+</c:choose>     
+			
         
 </head>
 <body>
@@ -86,8 +127,6 @@
 	            </div>
 	          </div>
           </c:forEach>
-
-          
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -97,6 +136,9 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
+      </div>
+      <div id="congratulations">
+      		<div class="joinFinished"><span>회원 가입을 <br/>완료하셨습니다!!</span></div>
       </div>
 </body>
 </html>

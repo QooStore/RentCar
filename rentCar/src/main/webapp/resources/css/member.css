@@ -1,200 +1,77 @@
-@charset "UTF-8";
-
-*{
-	margin: 0;
-	padding:0;
+span.bad {
+    position: absolute;
+    animation: fadeIn 0.5s forwards;
+    background-color: floralwhite;
+    color: rgb(255, 174, 108);
+    padding: 5px;
+    white-space: nowrap;
+    border-radius: 10px;
+}
+@keyframes fadeIn {
+    from{opacity: 0; margin-left: 50px;}
+    to {opacity: 1; margin-left: 20px;}
 }
 
-/* 화면 전체 렙 */
-.wrapper{
-	width: 500px;	
+   
+html, body {
+    margin-bottom: 0;
 }
-
-/* content 랩 */
-.wrap{
-	width : 300px;
-	margin: auto;
+.joinForm {
+    height: 100%;
 }
-/* 페이지 제목 */
-.subjecet{
-	width: 500%;
-    height: 50px;
-    background-color: #8EC0E4;
+fieldset {
+    border: 1px solid rgb(149, 255, 128);
+    width: 800px;
 }
-.subjecet span{
-	margin-left: 31px;
-    font-size: 80px;
-    font-weight: 900;
-    color: white;
+span.bad {
+    position: absolute;
+    animation: fadeIn 0.5s forwards;
+    background-color: floralwhite;
+    color: rgb(255, 174, 108);
+    padding: 5px;
+    white-space: nowrap;
+    border-radius: 10px;
 }
-
-/* 아이디 영역 */
-.id_wrap{
-
-    margin-top: 20px;
+@keyframes fadeIn {
+    from{opacity: 0; margin-left: 50px;}
+    to {opacity: 1; margin-left: 20px;}
 }
-.id_name{
-	font-size: 10px;
-    font-weight: bold;
+fieldset {
+    margin: 0 auto;
 }
-.id_input_box{
-	border: 1px solid black;
-	height:31px;
-	padding: 10px 14px;	
-	
-}
-.id_input{
-
-	border:none;
-	font-size:10px;
-}
-
-/* 비밀번호 영역 */
-.pw_wrap{
-
-    margin-top: 20px;
-}
-.pw_name{
-	font-size:10px;
-    font-weight: bold;
-}
-.pw_input_box{
-	border: 1px solid black;
-	height:31px;
-	padding: 10px 14px;	
-	
-}
-.pw_input{
-	border:none;
-	font-size:10px;
-}
-
-/* 비밀번호 확인 영역 */
-.pwck_wrap{
-    margin-top: 20px;
-}
-.pwck_name{
-	font-size: 10px;
-    font-weight: bold;
-}
-.pwck_input_box{
-	border: 1px solid black;
-	height:31px;
-	padding: 10px 14px;	
-	
-}
-.pwck_input{
-
-	border:none;
-	font-size:28px;
-}
-
-/* 이름 영역 */
-.user_wrap{
-    margin-top: 20px;
-}
-.user_name{
-	font-size: 10px;
-    font-weight: bold;
-}
-.user_input_box{
-	border: 1px solid black;
-	height:31px;
-	padding: 10px 14px;	
-	
-}
-.user_input{
-	border:none;
-	font-size:28px;
-}
-
-/* 메일 영역 */
-.mail_wrap{
-    margin-top: 20px;
-}
-.mail_name{
-	font-size: 10px;
-    font-weight: bold;
-}
-.mail_input_box{
-	border: 1px solid black;
-	height:31px;
-	padding: 10px 14px;	
-	
-}
-.mail_input{
-	border:none;
-	font-size:10px;
-}
-.mail_check_wrap{
-	margin-top: 20px;	
-}
-.mail_check_input_box{
-	border: 1px solid black;
-    height: 31px;
-    padding: 10px 14px;
-    width: 61%;
-    float: left;
-}
-.mail_check_input{
-	border:none;
-	font-size:10px;
-}
-.mail_check_button{
-    border: 1px solid black;
-    height: 51px;
-    width: 30%;
-    float: right;
-    line-height: 50px;
+fieldset > div:first-child {
     text-align: center;
-    font-size: 10px;
-    font-weight: 900;
-    background-color: #ececf7;
-    cursor: pointer;
+        height: 100px;
 }
-
-/*----------------------------------*/
-/* SECTION - BIRTH */
-.info#info__birth {
-  display: flex;
+legend {
+    font-size: 30px;
 }
-
-.info#info__birth select {
-  margin-left : 7px;
-}
-
-.info#info__birth select::-webkit-scrollbar {
-  width: 10px;
-}
-
-.info#info__birth select::-webkit-scrollbar-thumb {
-  background-color: #b6b6b6;
-  border-radius: 3px;
-}
-
-.info#info__birth select::-webkit-scrollbar-track {
-  background-color: #ebe9e9;
-  border-radius: 6px;
-}
-
-/*----------------------------------*/
-.info#info__birth select:first-child {
-  margin-left : 0px;
-}
-/* 가입하기 버튼 */
-.join_button_wrap{
-	margin-top: 40px;
-	text-align: center;
-}
-.join_button{
-    height: 80px;
-    background-color: #6AAFE6;
+.formWrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     font-size: 20px;
-    font-weight: 900;
-    color: white;
 }
-
-/* float 속성 해제 */
-.clearfix{
-	clear: both;
+.formWrapper div {
+    margin-top: 30px;
+    text-align: center;
+}
+.formWrapper label {
+    line-height: 30px;
+}
+.textBox {
+    border:1px solid rgb(255, 207, 169);
+    height: 30px;
+    width: 350px;
+}
+[type='submit'], [type='reset'] {
+    width: 150px;
+    height: 80px;
+    border: none;
+    font-size: 25px;
+    border-radius: 20px;
+    color: rgb(100, 90, 85);
+    background-color: rgb(235, 235, 235);
+}
+[type='submit']:active, [type='reset']:active {
+    background: rgb(120, 120, 120);
 }

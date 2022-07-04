@@ -10,79 +10,42 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.RentLoGo.member.model.MemberDTO;
 import com.RentLoGo.member.service.MemberService;
-import com.RentLoGo.rentCar.model.CarDTO;
 
 @Controller
 @RequestMapping("/member")
 public class MemberControllerImpl implements MemberController{
 
-	
 	@Autowired
-	private MemberService memberservice;
+	private MemberService memberService;
 	
 	@Override
-//	@RequestMapping("/*Form.do")
-	public String form() {
+	@RequestMapping("/memberForm.do")
+	public String form(HttpServletRequest request) {
 		
-		System.out.println("컨트롤러 호출 >>>> ");
-		
-		return "member";
-	}
-	
-//	@Override
-//	@RequestMapping(value="/memberJoin.do", method=RequestMethod.POST)
-//	public String joinPOST(MemberDTO member) throws Exception{
-//		
-//		System.out.println("가입 페이지 진입>>>>>>>>>>>>>>");
-//		memberservice.memberJoin(member);
-//		
-//		System.out.println("회원 가입 성공 ~~~~~~");
-//		
-//		return "redirect:/index";
-//	}
-	@Override
-	@RequestMapping(value="/memberJoin", method=RequestMethod.POST)
-	public String join(@RequestParam("memberId") String id,
-					   @RequestParam("memberPw") String pw,
-					   @RequestParam("memberClass")char cl,
-					   @RequestParam("memberName") String name,
-					   @RequestParam("memberBirth") String birth,
-					   @RequestParam("memberPhone") String phone,
-					   @RequestParam("memberEmail") String email,
-					   Model model) {
-		System.out.println("id : >>>>>" + id);
-		model.addAttribute("id", id);
-		model.addAttribute("pw", pw);
-		model.addAttribute("memberClass", '1');
-		model.addAttribute("name", name);
-		model.addAttribute("birth", birth);
-		model.addAttribute("phone", phone);
-		model.addAttribute("email", email);
-		
-		System.out.println("회원가입 성공~~~~");
-		return "redirect:/index";
-	}
-	
-	@Override
-	@RequestMapping("/member.do")
-	public String join(HttpServletRequest request){
-		// TODO Auto-generated method stub
-		System.out.println("회원 가입 페이지 >>>>>>>>>>>>>>");
-	
 		String viewName = (String) request.getAttribute("viewName");
 		viewName = viewName.substring(viewName.lastIndexOf("/")+1, viewName.length());
 		
 		return viewName;
 	}
 	
-//	@RequestMapping(value="member/login", method=RequestMethod.GET)
-//	public void loginGET() {
-//		System.out.println("로그인 페이지 >>>>>>>>>>>>>>");
-//	}
+	@Override
+	@RequestMapping(value="/memberJoin.do", method=RequestMethod.POST)
+	public String join(MemberDTO member, Model model) {
+		
+		try {
+			memberService.memberJoin(member);
+			
+			model.addAttribute("joinResult", "finished");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "redirect:/car/indexForm.do";
+	}
 	
 	//로그인 화면
 	@Override
@@ -109,19 +72,9 @@ public class MemberControllerImpl implements MemberController{
 		return viewName;
 	}
 	
-//	@RequestMapping("/modify.do")
-//	public String modifyGET(HttpServletRequest request) {
-//		System.out.println("회원 정보 수정 >>>>>>>>>>>>>>");
-//		
-//		String viewName = (String) request.getAttribute("viewName");
-//		viewName = viewName.substring(viewName.lastIndexOf("/")+1, viewName.length());
-//		
-//		return viewName;
-//	}
-	
 	@RequestMapping(value="modify", method=RequestMethod.POST)
 	public String modifyPOST(MemberDTO member) throws Exception{
-		memberservice.memberModify(member);
+		memberService.memberModify(member);
 		
 		System.out.println("회원 정보 수정 성공 ~~~~~~");
 		
@@ -136,10 +89,8 @@ public class MemberControllerImpl implements MemberController{
 		String viewName = (String) request.getAttribute("viewName");
 		viewName = viewName.substring(viewName.lastIndexOf("/")+1, viewName.length());
 		
-		List<MemberDTO> list =	memberservice.selectAllMember();
+		List<MemberDTO> list =	memberService.selectAllMember();
 		request.setAttribute("list", list);
-		
-		System.out.println("컨트롤러 list >>> " + list);
 		
 		return viewName;
 	}
@@ -154,5 +105,4 @@ public class MemberControllerImpl implements MemberController{
 		return viewName;
 	}
 
-	
 }
