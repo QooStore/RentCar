@@ -46,6 +46,7 @@
                         regexPw: true
                     },
                     checkPw: {
+                    	required: true,
                     	equalTo: "#memberPw"
                     },
                     memberName: {
@@ -73,6 +74,10 @@
                         required: '비밀번호를 입력해주세요.',
                         minlength: '비밀번호는 8~12자리 입니다.',
                         maxlength: '비밀번호는 8~12자리 입니다.',
+                    },
+                    checkPw: {
+                    	required: '비밀번호를 입력해주세요.',
+                    	equalTo: '비밀번호가 같지 않습니다.'
                     },
                     memberName: {
                         required: '이름은 필수입니다.',
