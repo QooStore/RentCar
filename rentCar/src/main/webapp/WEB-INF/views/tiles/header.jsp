@@ -16,7 +16,7 @@
 <body>
     <header>
         <div class="logo">
-            <a href="#">RentLoGo</a>
+            <a href="${contextPath }/car/indexForm.do">RentLoGo</a>
         </div>
         <div>
             <a href="#">단기 렌터카</a>
@@ -31,7 +31,7 @@
             <input type="checkbox" class="member_menu" id="member_menu" />
             <label for="member_menu" class="burger"><i class="fa-solid fa-bars"></i></label>
             <ul>
-                <li><a href="#"><i class="fa-solid fa-plus headerIcons"></i>회원가입</a></li>
+                <li><a href="${contextPath }/member/memberForm.do"><i class="fa-solid fa-plus headerIcons"></i>회원가입</a></li>
                 <li><a href="#"><i class="fa-solid fa-clipboard-user headerIcons"></i>로그인</a></li>
                 <li><a href="#"><i class="fa-solid fa-align-right headerIcons"></i>예약정보</a></li>
                 <li><a href="#"><i class="fa-solid fa-basket-shopping headerIcons"></i>장바구니</a></li>

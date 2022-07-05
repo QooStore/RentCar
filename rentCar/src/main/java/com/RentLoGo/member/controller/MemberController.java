@@ -1,25 +1,29 @@
 package com.RentLoGo.member.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
-import org.springframework.ui.Model;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.RentLoGo.member.model.MemberDTO;
 
 public interface MemberController {
 	
-	public String form();
-	public String join(HttpServletRequest request) throws Exception;
-	//public String joinPOST(MemberDTO member) throws Exception;
+	String form(HttpServletRequest request);
+	public void verify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	public String join(MemberDTO member, RedirectAttributes redirect);
 	
 	//로그인
 	public String login(HttpServletRequest request);
 	
 	//회원정보수정
-	public String modify(HttpServletRequest request);
+	public String modifyForm(HttpServletRequest request);
+	public String modify(MemberDTO member, RedirectAttributes redirect);
 	
 	//회원조회(manage)
 	public String select(HttpServletRequest request);
 	public String listMember(HttpServletRequest request);
-	String join(String id, String pw, char cl, String name, String birth, String phone, String email, Model model);
 }

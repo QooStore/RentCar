@@ -1,151 +1,160 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>È¸¿ø °¡ÀÔ</title>
-<!-- <link rel="stylesheet" href="/rentCar/resources/css/member.css"> -->
-<script src="https://code.jquery.com/jquery-3.4.1.js"
-	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-	crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<title>íšŒì› ê°€ì…</title>
+<script src="/rentCar/resources/jQuery/jQuery3.6.js"></script>
+<script src="/rentCar/resources/jQuery/jquery.validate.min.js"></script>
+<link rel="stylesheet" href="/rentCar/resources/css/member.css">
+
+    <script>
+        $(function() {
+            $.validator.addMethod("regexId", function(value, element){
+                return this.optional(element) || value.match(/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{1,}$/g);
+            }, "ì˜ë¬¸ê³¼ ìˆ«ìë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+
+            $.validator.addMethod("regexPw", function(value, element) {
+                return this.optional(element) || value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,12}$/g); 
+            }, "ìˆ«ì, ì˜ë¬¸ ëŒ€Â·ì†Œë¬¸ì, íŠ¹ìˆ˜ë¬¸ìë¥¼ í¬í•¨í•´ì•¼ í•©ë‹ˆë‹¤.");
+
+            $.validator.addMethod("regexName", function(value, element) {
+                return this.optional(element) || value.match(/^[A-Za-zê°€-í£]*$/); 
+            }, "ì´ë¦„ì— íŠ¹ìˆ˜ë¬¸ì, ìˆ«ìëŠ” í¬í•¨í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
+
+            $.validator.addMethod("regexPhone", function(value, element) {
+                return this.optional(element) || value.match(/^[0-9]*$/); 
+            }, "ìˆ«ìë§Œ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
+    
+            $.validator.addMethod("regexMail", function(value, element) {
+                return this.optional(element) || value.match(/^.+@.+\..+$/); 
+            }, "ë©”ì¼ í˜•ì‹ì´ ë§ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+            $(".joinForm").validate({
+                rules:{
+                    memberId: {
+                        required: true,
+                        maxlength: 15,
+                        regexId: true
+                    },
+                    memberPw: {
+                        required: true,
+                        minlength: 8,
+                        maxlength: 12,
+                        regexPw: true
+                    },
+                    checkPw: {
+                    	required: true,
+                    	equalTo: "#memberPw"
+                    },
+                    memberName: {
+                        required: true,
+                        maxlength: 20,
+                        regexName: true
+                    },
+                    memberPhone: {
+                        maxlength: 20,
+                        regexPhone: true
+                    },
+                    memberEmail: {
+                        required: true,
+                        email: true,
+                        regexMail: true
+                    }
+
+                },
+                messages: {
+                    memberId: {
+                        required: 'ì•„ì´ë””ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.',
+                        maxlength: 'ìµœëŒ€ 15ìë¦¬ì…ë‹ˆë‹¤.'
+                    },
+                    memberPw: {
+                        required: 'ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.',
+                        minlength: 'ë¹„ë°€ë²ˆí˜¸ëŠ” 8~12ìë¦¬ ì…ë‹ˆë‹¤.',
+                        maxlength: 'ë¹„ë°€ë²ˆí˜¸ëŠ” 8~12ìë¦¬ ì…ë‹ˆë‹¤.',
+                    },
+                    checkPw: {
+                    	required: 'ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.',
+                    	equalTo: 'ë¹„ë°€ë²ˆí˜¸ê°€ ê°™ì§€ ì•ŠìŠµë‹ˆë‹¤.'
+                    },
+                    memberName: {
+                        required: 'ì´ë¦„ì€ í•„ìˆ˜ì…ë‹ˆë‹¤.',
+                        minlength: 'ìµœì†Œ 2ê¸€ì ì´ìƒ ì…ë ¥í•´ì£¼ì„¸ìš”.'
+                    },
+                    memberPhone: {
+                        maxlength: 'ì „í™”ë²ˆí˜¸ëŠ” 20ìë¥¼ ë„˜ì§€ì•ŠìŠµë‹ˆë‹¤.'
+                    },
+                    memberEmail: {
+                        required: 'ì´ë©”ì¼ì€ í•„ìˆ˜ì…ë‹ˆë‹¤.',
+                        email: 'ë©”ì¼ í˜•ì‹ì´ ë§ì§€ ì•ŠìŠµë‹ˆë‹¤.'
+                    }
+                },
+                errorElement: 'span',
+                errorClass: 'bad',
+                validClass: 'good'
+            });
+        });
+    </script>
 </head>
+
 <body>
-	<div class="wrapper">
-		<form action="<c:url value='/member/memberJoin.do'/>" id="join_form" method="post">
-			<div class="wrap">
-				<div class="subjecet">
-					<span>È¸¿ø°¡ÀÔ</span>
-				</div>
-				<div class="id_wrap">
-					<div class="id_name">¾ÆÀÌµğ</div>
-					<div class="id_input_box">
-						<input class="id_input" name="memberId">
-					</div>
-				</div>
-				<div class="pw_wrap">
-					<div class="pw_name">ºñ¹Ğ¹øÈ£</div>
-					<div class="pw_input_box">
-						<input type="password" class="pw_input" name="memberPw">
-					</div>
-				</div>
-				<div class="pwck_wrap">
-					<div class="pwck_name">ºñ¹Ğ¹øÈ£ È®ÀÎ</div>
-					<div class="pwck_input_box">
-						<input type="password" class="pwck_input">
-					</div>
-				</div>
-				<div class="user_wrap">
-					<div class="user_name">ÀÌ¸§</div>
-					<div class="user_input_box">
-						<input class="user_input" name="memberName">
-					</div>
-				</div>
 
-				<div class="birthday">
-					<div class="birthday_name">»ı³â ¿ùÀÏ</div>
-					
-					<div class="info" id="info__birth">
-						<select class="box" id="birth-year">
-							<option disabled selected>Ãâ»ı ¿¬µµ</option>
-						</select> <select class="box" id="birth-month">
-							<option disabled selected>¿ù</option>
-						</select> <select class="box" id="birth-day">
-							<option disabled selected>ÀÏ</option>
-						</select>
-					</div>
-				</div>
-
-
-				<div class="mail_wrap">
-					<div class="mail_name">ÀÌ¸ŞÀÏ</div>
-					<div class="mail_input_box">
-						<input class="mail_input" name="memberEmail">
-
-					</div>
-					<div class="mail_check_wrap">
-						<div class="mail_check_input_box">
-							<input class="mail_check_input">
-						</div>
-						<div class="mail_check_button">
-							<span>ÀÎÁõ¹øÈ£ Àü¼Û</span>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-				<div class="join_button_wrap">
-					<input type="submit" class="join_button" value="°¡ÀÔÇÏ±â">
-				</div>
-			</div>
-		</form>
-	</div>
-
-	<script>
-/* 		$(document).ready(function() {
-			//È¸¿ø°¡ÀÔ ¹öÆ°(È¸¿ø°¡ÀÔ ±â´É ÀÛµ¿)
-			$(".join_button").click(function() {
-				$("#join_form").attr("action", "/member/memberJoin");
-				$("#join_form").submit();
-			});
-		}); */
-		// 'Ãâ»ı ¿¬µµ' ¼¿·ºÆ® ¹Ú½º option ¸ñ·Ï µ¿Àû »ı¼º
-		const birthYearEl = document.querySelector('#birth-year')
-		// option ¸ñ·Ï »ı¼º ¿©ºÎ È®ÀÎ
-		isYearOptionExisted = false;
-		birthYearEl.addEventListener('focus', function() {
-			// year ¸ñ·Ï »ı¼ºµÇÁö ¾Ê¾ÒÀ» ¶§ (ÃÖÃÊ Å¬¸¯ ½Ã)
-			if (!isYearOptionExisted) {
-				isYearOptionExisted = true
-				for (var i = 1940; i <= 2022; i++) {
-					// option element »ı¼º
-					const YearOption = document.createElement('option')
-					YearOption.setAttribute('value', i)
-					YearOption.innerText = i
-					// birthYearElÀÇ ÀÚ½Ä ¿ä¼Ò·Î Ãß°¡
-					this.appendChild(YearOption);
-				}
-			}
-		});
-		// Month, Dayµµ µ¿ÀÏÇÑ ¹æ½ÄÀ¸·Î ±¸Çö
-
-		const birthMonths = document.querySelector('#birth-month')
-		// option ¸ñ·Ï »ı¼º ¿©ºÎ È®ÀÎ
-		isMonthsOptionExisted = false;
-		birthMonths.addEventListener('focus', function() {
-			// months ¸ñ·Ï »ı¼ºµÇÁö ¾Ê¾ÒÀ» ¶§ (ÃÖÃÊ Å¬¸¯ ½Ã)
-			if (!isMonthsOptionExisted) {
-				isMonthsOptionExisted = true
-				for (var i = 1; i <= 12; i++) {
-					// option element »ı¼º
-					const MonthsOption = document.createElement('option')
-					MonthsOption.setAttribute('value', i)
-					MonthsOption.innerText = i
-					// birthMonthsÀÇ ÀÚ½Ä ¿ä¼Ò·Î Ãß°¡
-					this.appendChild(MonthsOption);
-				}
-			}
-		});
-		//-----
-		const birthDays = document.querySelector('#birth-day')
-		// option ¸ñ·Ï »ı¼º ¿©ºÎ È®ÀÎ
-		isDaysOptionExisted = false;
-		birthDays.addEventListener('focus', function() {
-			// months ¸ñ·Ï »ı¼ºµÇÁö ¾Ê¾ÒÀ» ¶§ (ÃÖÃÊ Å¬¸¯ ½Ã)
-			if (!isDaysOptionExisted) {
-				isDaysOptionExisted = true
-				for (var i = 1; i <= 31; i++) {
-					// option element »ı¼º
-					const DaysOption = document.createElement('option')
-					DaysOption.setAttribute('value', i)
-					DaysOption.innerText = i
-					// birthMonthsÀÇ ÀÚ½Ä ¿ä¼Ò·Î Ãß°¡
-					this.appendChild(DaysOption);
-				}
-			}
-		});
-	</script>
-
-
+<form action="${contextPath }/member/virify.do" method="post" novalidate class="joinForm">
+        <fieldset>
+            <div>
+                <legend>íšŒì› ê°€ì…</legend>
+            </div>
+            <div class="formWrapper">
+                <div>
+                    <label for="memberId">ì•„ì´ë””</label>
+                </div>
+                <div>
+                    <input class="textBox" type="text" id="memberId" name="memberId" placeholder="ìµœëŒ€ 15ìë¦¬, ì˜ë¬¸, ìˆ«ì">
+                </div>
+                <div>
+                    <label for="memberPw">ë¹„ë°€ë²ˆí˜¸</label>
+                </div>
+                <div>
+                    <input class="textBox" type="password" id="memberPw" name="memberPw" placeholder="8~12ì ìˆ«ì, ì˜ë¬¸ ëŒ€Â·ì†Œë¬¸ì, íŠ¹ìˆ˜ë¬¸ì(!@#$%^&*)">
+                </div>
+                <div>
+                    <label for="checkPw">ë¹„ë°€ë²ˆí˜¸ í™•ì¸</label>
+                </div>
+                <div>
+                    <input class="textBox" type="password" id="checkPw" name="checkPw">
+                </div>
+                <div>
+                    <label for="memberName">ì´ë¦„</label>
+                </div>
+                <div>
+                    <input class="textBox" type="text" id="memberName" name="memberName">
+                </div>
+                <div>
+                    <label for="memberBirth">ìƒì¼</label>
+                </div>
+                <div>
+                    <input type="date" class="textBox" id="memberBirth" name="memberBirth">
+                </div>
+                <div>
+                    <label for="memberPhone">ì „í™”ë²ˆí˜¸</label>
+                </div>
+                <div>
+                    <input class="textBox" type="tel" id="memberPhone" name="memberPhone" placeholder="-ì œì™¸ ìˆ«ìë§Œ ì…ë ¥">
+                </div>
+                <div>
+                    <label for="memberEmail">ì´ë©”ì¼</label>
+                </div>
+                <div>
+                    <input class="textBox" type="email" id="memberEmail" name="memberEmail">
+                </div>
+                <div><input type="submit" value="ê°€ì…í•˜ê¸°"></div>
+                <div><input type="reset" value="ë‹¤ì‹œ ì‘ì„±"></div>
+            </div>
+            <input type="hidden" name="memberClass" value="1">
+        </fieldset>
+    </form>
+    
 </body>
 </html>
