@@ -1,9 +1,13 @@
 package com.RentLoGo.member.controller;
 
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,12 +36,19 @@ public class MemberControllerImpl implements MemberController{
 	}
 	
 	@Override
+	@RequestMapping(value="/virify.do", method=RequestMethod.POST)
+	public void verify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/mail/sendMail");
+		dispatcher.forward(request, response);
+	}
+	
+	@Override
 	@RequestMapping(value="/memberJoin.do", method=RequestMethod.POST)
 	public String join(MemberDTO member, RedirectAttributes redirect) {
 		
 		try {
-			memberService.memberJoin(member);
 			
+			memberService.memberJoin(member);
 			redirect.addAttribute("joinResult", "finished");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

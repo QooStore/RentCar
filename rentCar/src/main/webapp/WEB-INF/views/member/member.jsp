@@ -101,7 +101,7 @@
 
 <body>
 
-<form action="${contextPath }/member/memberJoin.do" method="post" novalidate class="joinForm">
+<form action="${contextPath }/member/virify.do" method="post" novalidate class="joinForm">
         <fieldset>
             <div>
                 <legend>회원 가입</legend>

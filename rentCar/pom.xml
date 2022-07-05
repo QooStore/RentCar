@@ -181,6 +181,25 @@
 			<version>${org.apache.tiles.version}</version>
 		</dependency>
 
+				<!-- 이메일 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId> <!-- spring4 이상 사용 시 추가 -->
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- 자바 메일 라이브러리들 -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>javax.mail-api</artifactId>
+			<version>1.5.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.5.3</version>
+		</dependency>   
+
 	</dependencies>
 	<build>
 		<plugins>
