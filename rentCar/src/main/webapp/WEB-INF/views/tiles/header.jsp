@@ -32,7 +32,7 @@
             <label for="member_menu" class="burger"><i class="fa-solid fa-bars"></i></label>
             <ul>
                 <li><a href="${contextPath }/member/memberForm.do"><i class="fa-solid fa-plus headerIcons"></i>회원가입</a></li>
-                <li><a href="#"><i class="fa-solid fa-clipboard-user headerIcons"></i>로그인</a></li>
+                <li><a href="${contextPath }/member/login.do"><i class="fa-solid fa-clipboard-user headerIcons"></i>로그인</a></li>
                 <li><a href="#"><i class="fa-solid fa-align-right headerIcons"></i>예약정보</a></li>
                 <li><a href="#"><i class="fa-solid fa-basket-shopping headerIcons"></i>장바구니</a></li>
             </ul>

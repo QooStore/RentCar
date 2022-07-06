@@ -80,10 +80,8 @@ public class MemberControllerImpl implements MemberController{
 	@RequestMapping(value="/memberLogin.do", method=RequestMethod.POST)
 	public String login(HttpServletRequest request, MemberDTO member, RedirectAttributes rttr) throws Exception {
 		
-		System.out.println("로그인 메서드 진입 >>>>>>>> ");
-		System.out.println("전달된 데이터 : " + member);
+		System.out.println("member >>> " + member);
 		
-		System.out.println("진입>>>>>>>>>>>");
 		HttpSession session = request.getSession();
 		MemberDTO mto = null;
 		mto = memberService.memberLogin(member);
