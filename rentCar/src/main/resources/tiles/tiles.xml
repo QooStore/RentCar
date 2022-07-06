@@ -26,6 +26,10 @@
       <put-attribute name="body" value="/WEB-INF/views/member/modify.jsp" />
    </definition>
    
+   <definition name="memberDeleteForm" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/member/delete.jsp" />
+   </definition>
+   
    <definition name="manage" extends="baseLayout">
       <put-attribute name="body" value="/WEB-INF/views/management/member_manage.jsp" />
    </definition>

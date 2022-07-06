@@ -63,7 +63,7 @@ legend {
     height: 30px;
     width: 350px;
 }
-[type='submit'], [type='reset'] {
+[type='submit'], [type='reset'], [type='button'] {
     width: 150px;
     height: 80px;
     border: none;
@@ -72,6 +72,6 @@ legend {
     color: rgb(100, 90, 85);
     background-color: rgb(235, 235, 235);
 }
-[type='submit']:active, [type='reset']:active {
+[type='submit']:active, [type='reset']:active, [type='button']:active {
     background: rgb(120, 120, 120);
 }

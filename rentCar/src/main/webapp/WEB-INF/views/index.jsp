@@ -74,6 +74,17 @@
 		    align-items: center;
 		    justify-content: center;
         }
+        .deleteFinished {
+        	width: 500px;
+        	height: 500px;
+        	background-color: rgba(255, 255, 255, 0.8);
+        	border-radius: 100px;
+        	font-size: 50px;
+        	text-align: center;
+       	    display: flex;
+		    align-items: center;
+		    justify-content: center;
+        }
         
      </style>
      
@@ -94,6 +105,20 @@
 <!-- 회원정보수정 완료 시 -->   
 <c:choose>
 	<c:when test="${info.modifyResult == 'finished' }">
+			<script>
+			     $(function() {
+			     	$('#congratulations').css({visibility: 'visible'});
+			     	$('#congratulations').click(function() {
+			     		$(this).css({visibility: 'hidden'});
+			     	});
+			     });
+			</script>
+	</c:when>
+</c:choose>  
+
+<!-- 회원탈퇴 완료 시 -->   
+<c:choose>
+	<c:when test="${info.deleteResult == 'finished' }">
 			<script>
 			     $(function() {
 			     	$('#congratulations').css({visibility: 'visible'});
@@ -181,6 +206,15 @@
       </div>
     </c:when>
 	</c:choose> 
+	
+<!-- 회원탈퇴 완료 시 -->   
+    <c:choose>
+	<c:when test="${info.deleteResult == 'finished' }">
+      <div id="congratulations">
+      		<div class="deleteFinished"><span>회원 탈퇴를 <br/>완료하셨습니다!!</span></div>
+      </div>
+    </c:when>
+	</c:choose> 	
 	
 </body>
 </html>

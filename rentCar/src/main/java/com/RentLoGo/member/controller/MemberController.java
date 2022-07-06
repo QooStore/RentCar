@@ -23,6 +23,10 @@ public interface MemberController {
 	public String modifyForm(HttpServletRequest request);
 	public String modify(MemberDTO member, RedirectAttributes redirect);
 	
+	//회원탈퇴
+	public String deleteForm(HttpServletRequest request);
+	public String delete(MemberDTO member, RedirectAttributes redirect);
+	
 	//회원조회(manage)
 	public String select(HttpServletRequest request);
 	public String listMember(HttpServletRequest request);

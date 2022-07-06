@@ -97,6 +97,33 @@ public class MemberControllerImpl implements MemberController{
 		return "redirect:/car/indexForm.do";
 	}
 	
+	// 회원탈퇴
+	@Override
+	@RequestMapping("/memberDeleteForm.do")
+	public String deleteForm(HttpServletRequest request) {
+		
+		String viewName = (String) request.getAttribute("viewName");
+		viewName = viewName.substring(viewName.lastIndexOf("/")+1, viewName.length());
+		
+		return viewName;
+	}
+	
+	@Override
+	@RequestMapping(value="/memberDelete.do", method=RequestMethod.POST)
+	public String delete(MemberDTO member, RedirectAttributes redirect) {
+		
+		try {
+			memberService.memberDelete(member);
+			
+			redirect.addAttribute("deleteResult", "finished");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "redirect:/car/indexForm.do";
+	}
+	
 	//회원조회(manage)
 	@Override
 	@RequestMapping("/manage.do")
