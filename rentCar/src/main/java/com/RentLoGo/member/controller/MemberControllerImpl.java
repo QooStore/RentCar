@@ -3,20 +3,25 @@ package com.RentLoGo.member.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.RentLoGo.member.model.MemberDTO;
+import com.RentLoGo.member.service.MemberJoinCodeService;
 import com.RentLoGo.member.service.MemberService;
 
 @Controller
@@ -25,6 +30,9 @@ public class MemberControllerImpl implements MemberController{
 
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private MemberJoinCodeService codeService;
 	
 	@Override
 	@RequestMapping("/memberForm.do")
@@ -194,5 +202,56 @@ public class MemberControllerImpl implements MemberController{
 		
 		return viewName;
 	}
+
+	@Override
+	@RequestMapping(value="/verify.do", method=RequestMethod.POST)
+	public String verify(MemberDTO dto, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
+		
+		codeService.createCode(response);
+		session.setAttribute("memberInfo", dto);
+		
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("/mail/sendMail.do");
+//		dispatcher.forward(request, response);
+//		return null;
+		return "redirect:/mail/sendMail.do";
+	}
+
+	//인증번호 재요청
+	@Override
+	@RequestMapping(value="/resendCode.do", method=RequestMethod.POST)
+	public String reVerify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		codeService.createCode(response);
+		
+		return "redirect:/mail/sendMail.do";
+	}
+
+	//인증번호 비교
+	@Override
+	@RequestMapping(value="/checkCode.do", method=RequestMethod.POST)
+	public ResponseEntity<String> checkCode(@RequestBody Map<String, Object> inputCode, HttpSession session, HttpServletRequest request) {
+
+		Cookie[] allCookies = request.getCookies();
+		
+		String randomCode = "";
+		for(int i = 0; i < allCookies.length; i++) {
+			if(allCookies[i].getName().equals("randomCode")) {
+				randomCode = allCookies[i].getValue();
+			}
+		}
+		
+		System.out.println("code >>> " + inputCode.get("code"));
+		String code = (String) inputCode.get("code");
+		ResponseEntity<String> result = codeService.checkCode(code, randomCode);
+		
+		System.out.println("controller >>> result >>> " + result);
+		return result;
+	}
+
+		@Override
+		public String join(HttpSession session, RedirectAttributes redirect) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
 }
