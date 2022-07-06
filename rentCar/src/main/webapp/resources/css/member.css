@@ -128,3 +128,8 @@ legend {
  .verification button:active, .verification [type='submit']:active {
  	background-color: rgb(120, 120, 120);
  }
+ 
+  #buttonResend, #buttonVerification {
+ 	width: 100px;
+ 	height: 50px;
+ }

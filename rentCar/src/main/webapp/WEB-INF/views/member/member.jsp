@@ -95,13 +95,90 @@
                 errorClass: 'bad',
                 validClass: 'good'
             });
+            
         });
     </script>
+    
+<c:choose>
+	<c:when test="${status == 'verification' }">
+	    <script>
+	    window.onload = function() {
+	    	let verification = document.querySelector('.verification');
+	    	let inputCode = document.querySelector('#inputCode');
+	    	
+	    	document.querySelector('.verification').style.visibility = 'visible';
+	    	
+	    	window.addEventListener('click', function(e) {
+	    		e.target == verification ?	location.href="${contextPath}/member/memberForm.do": false;
+	    	});
+	    	
+	    	document.querySelector('#buttonVerification').addEventListener('click', function() {
+
+	    		let xhttp = new XMLHttpRequest();
+	    		let codeValue = inputCode.value;
+	    		let requestJSON = new Object(); 
+	    		requestJSON.code = codeValue; //json형식으로 값을 넣어줌
+	    		xhttp.open('post', "${contextPath}/member/checkCode.do", true);
+	    		
+	            //HTTP 요청 헤더 설정
+	            xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8;');
+	            
+	            console.log(JSON.stringify(requestJSON));
+	    		xhttp.send(JSON.stringify(requestJSON));
+	    		
+	    		xhttp.onreadystatechange = function() {
+	    			if(this.readyState == 4 && this.status == 200) {
+						let result = this.responseText;
+						
+						if(result == 'true') {
+							location.href='${contextPath}/member/memberJoin.do';
+						}else {
+							alert('번호가 일치하지 않습니다.');
+						}
+	    			}
+	    		}
+	    		
+	    	});
+	    	
+	    	let time = 180;
+	    	let min = '';
+	    	let sec = '';
+	    	
+    	let setTime = setInterval(function() {
+    		
+    		min = parseInt(time/60);
+    		sec = time%60;
+    		
+    		document.getElementById('timer').innerHTML = min + '분' + sec + '초';
+    		time--;
+    	
+    	if(time < 0)clearInterval(setTime);
+    		
+    	}, 1000);
+	    	
+	    	document.querySelector('#buttonResend').addEventListener('click', function() {
+	    		let xhttp = new XMLHttpRequest();
+	    		xhttp.open('post', "${contextPath}/member/resendCode.do", true);
+	    		xhttp.send();
+	    		
+	    		xhttp.onreadystatechange = function() {
+	    			if(this.readyState == 4 && this.status == 200) {
+	    				alert('인증번호를 다시 보냈습니다.\n 메일을 확인해주세요.');
+						time = 180;
+	    				
+	    			}
+	    		}
+	    	});
+	    	
+	    }
+	    </script>
+	</c:when>
+</c:choose>
 </head>
 
 <body>
 
-<form action="${contextPath }/member/virify.do" method="post" novalidate class="joinForm">
+<form action="${contextPath }/member/verify.do" method="post" novalidate class="joinForm">
         <fieldset>
             <div>
                 <legend>회원 가입</legend>
@@ -155,6 +232,19 @@
             <input type="hidden" name="memberClass" value="1">
         </fieldset>
     </form>
+    
+    <div class="verification">
+        <form action="">
+            <fieldset>
+                <legend><h4>메일인증 코드 입력</h3></legend>
+                <label for="">인증코드&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="timer"></span><br/></label>
+                <input type="text" id="inputCode"/>
+                <button type="button" id="buttonResend">재전송</button>
+                <button type="button" id="buttonVerification">인증하기</button>
+                
+            </fieldset>
+        </form>
+    </div>
     
 </body>
 </html>

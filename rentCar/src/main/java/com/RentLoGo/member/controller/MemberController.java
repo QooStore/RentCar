@@ -16,8 +16,6 @@ import com.RentLoGo.member.model.MemberDTO;
 public interface MemberController {
 	
 	String form(HttpServletRequest request);
-	public void verify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
-	public String join(MemberDTO member, RedirectAttributes redirect);
 	
 	//인증코드 발송
 	public String verify(MemberDTO dto, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException;

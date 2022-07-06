@@ -45,25 +45,22 @@ public class MemberControllerImpl implements MemberController{
 	}
 	
 	@Override
-	@RequestMapping(value="/virify.do", method=RequestMethod.POST)
-	public void verify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/mail/sendMail");
-		dispatcher.forward(request, response);
-	}
-	
-	@Override
-	@RequestMapping(value="/memberJoin.do", method=RequestMethod.POST)
-	public String join(MemberDTO member, RedirectAttributes redirect) {
+	@RequestMapping(value="/memberJoin.do", method=RequestMethod.GET)
+	public String join(HttpSession session, RedirectAttributes redirect) {
 		
 		try {
 			
+			MemberDTO member = (MemberDTO) session.getAttribute("memberInfo");
+			
 			memberService.memberJoin(member);
 			redirect.addAttribute("joinResult", "finished");
+			
+			session.removeAttribute("memberInfo");
+			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return "redirect:/car/indexForm.do";
 	}
 	
@@ -248,10 +245,6 @@ public class MemberControllerImpl implements MemberController{
 		return result;
 	}
 
-		@Override
-		public String join(HttpSession session, RedirectAttributes redirect) {
-			// TODO Auto-generated method stub
-			return null;
-		}
+
 
 }
