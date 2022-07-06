@@ -57,6 +57,14 @@
                 validClass: 'good'
             });
         });
+        
+        $(document).ready(function(){
+        	$('.delete_submit').click(function() {
+				if(confirm("탈퇴 시, 복구할 수 없습니다. 탈퇴하시겠습니까?")==false){
+					return false;
+				}
+			})
+        })
     </script>
 </head>
 
@@ -87,7 +95,7 @@
                     <input class="textBox" type="password" id="checkPw" name="checkPw">
                 </div>
         
-                <div><input type="submit" value="탈퇴하기"></div>
+                <div><input type="submit" class="delete_submit" value="탈퇴하기"></div>
                 <div><input type="button" value="뒤로가기" onclick="location='memberModifyForm.do'"></div>
             </div>
             <input type="hidden" name="memberClass" value="1">

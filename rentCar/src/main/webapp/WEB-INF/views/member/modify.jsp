@@ -145,11 +145,12 @@
                     <input class="textBox" type="email" id="memberEmail" name="memberEmail">
                 </div>
                 <div><input type="submit" value="수정하기"></div>
-                <div><input type="button" value="탈퇴하기" onclick="location='memberDeleteForm.do'"></div>
+                <div><input type="button" value="회원탈퇴" onclick="location='memberDeleteForm.do'"></div>
             </div>
             <input type="hidden" name="memberClass" value="1">
         </fieldset>
     </form>
-    
+
+
 </body>
 </html>
