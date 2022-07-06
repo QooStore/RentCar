@@ -75,3 +75,10 @@ legend {
 [type='submit']:active, [type='reset']:active, [type='button']:active {
     background: rgb(120, 120, 120);
 }
+
+/* 로그인 실패시 경고글 */
+.login_warn{
+    margin-top: 30px;
+    text-align: center;
+    color : red;
+}

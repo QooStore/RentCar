@@ -18,6 +18,7 @@ public interface MemberController {
 	
 	//로그인
 	public String login(HttpServletRequest request);
+	public String login(HttpServletRequest request, MemberDTO member, RedirectAttributes rttr) throws Exception;
 	
 	//회원정보수정
 	public String modifyForm(HttpServletRequest request);

@@ -8,6 +8,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -68,6 +69,52 @@ public class MemberControllerImpl implements MemberController{
 		viewName = viewName.substring(viewName.lastIndexOf("/")+1, viewName.length());
 		
 		return viewName;
+	}
+	
+	@Override
+	@RequestMapping(value="/memberLogin.do", method=RequestMethod.POST)
+	public String login(HttpServletRequest request, MemberDTO member, RedirectAttributes rttr) throws Exception {
+		
+		System.out.println("로그인 메서드 진입 >>>>>>>> ");
+		System.out.println("전달된 데이터 : " + member);
+		
+		System.out.println("진입>>>>>>>>>>>");
+		HttpSession session = request.getSession();
+		MemberDTO mto = null;
+		mto = memberService.memberLogin(member);
+		
+		System.out.println("데이터 >>>>>>>>> " + mto);
+//		String id = member.getMemberId();
+//		String pw = member.getMemberPw();
+//		
+//		System.out.println("아이디 : >>> " + id);
+//		System.out.println("비번 : >>> " + pw);
+//		
+//		List<MemberDTO> list =	memberService.AllMember();
+//		System.out.println("all list " + list);
+//		
+//		if(list.contains(id)) {
+//			session.setAttribute("member", member);
+//			System.out.println("로그인 성공 ~~~~~");
+//			return "redirect:/car/indexForm.do";
+//		}else
+//		{
+//			int result = 0;
+//			rttr.addFlashAttribute("result",result);
+//			System.out.println("로그인 실패 >>>>>>>>>>>>>>>> 비번 또는 아이디 틀림");
+//			return "redirect:/member/login.do";
+//		}
+		
+		if(mto == null) {
+			int result = 0;
+			rttr.addFlashAttribute("result",result);
+			System.out.println("로그인 실패 >>>>>>>>>>>>>>>> 비번 또는 아이디 틀림");
+			return "redirect:/member/login.do";
+		}
+		
+		session.setAttribute("member", mto);
+		System.out.println("로그인 성공 ~~~~~");
+		return "redirect:/car/indexForm.do";
 	}
 
 	// 회원정보수정
