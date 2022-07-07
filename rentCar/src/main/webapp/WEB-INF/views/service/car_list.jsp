@@ -14,6 +14,7 @@
         }
 
         a {
+        	color: black;
             display: block;
             text-decoration: none;
         }
@@ -36,9 +37,13 @@
             height: 100px;
             margin-left: 150px;
         }
+        
+        .items_container .menu_wrapper div {
+        	margin-right: 50px;
+        }
 
         .menu_wrapper .car_category {
-            display: flex;
+        	display: flex;
         }
 
         .menu_wrapper .car_category li {
@@ -50,8 +55,11 @@
         }
 
         .item_wrapper {
-            display: flex;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .item_wrapper .item_list:not(:nth-child(4n)) {
+        	margin-right: 35px;
         }
 
         .hidden {

@@ -35,7 +35,7 @@ public class CarControllerImpl implements CarController {
 	}
 
 	@Override
-//	@RequestMapping("/listCars.do")
+	@RequestMapping("/listCars.do")
 	public String listCars(HttpServletRequest request) {
 
 		String viewName = (String) request.getAttribute("viewName");
