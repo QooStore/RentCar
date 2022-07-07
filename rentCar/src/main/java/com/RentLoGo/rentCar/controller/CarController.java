@@ -12,8 +12,9 @@ import com.RentLoGo.rentCar.model.AllCarDTO;
 public interface CarController {
 
 	public String form(Map info, HttpServletRequest request);
-	public ResponseEntity<List<AllCarDTO>> listCars(HttpServletRequest request);
+	public String listCars(HttpServletRequest request);
 	String carDetail(HttpServletRequest request);
+	public Map<String, List<AllCarDTO>> ajaxCars();
 	
 	//렌터카조회(manage)
 	public String select(HttpServletRequest request);

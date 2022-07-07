@@ -1,5 +1,6 @@
 package com.RentLoGo.rentCar.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.RentLoGo.rentCar.model.AllCarDTO;
 import com.RentLoGo.rentCar.model.CarDTO;
@@ -38,18 +40,27 @@ public class CarControllerImpl implements CarController {
 
 	@Override
 	@RequestMapping("/listCars.do")
-//	@ResponseBody
-	public ResponseEntity<List<AllCarDTO>> listCars(HttpServletRequest request) {
-
+	public String listCars(HttpServletRequest request) {
+		
 		String viewName = (String) request.getAttribute("viewName");
 		viewName = viewName.substring(viewName.lastIndexOf("/")+1, viewName.length());
 		
-		List<AllCarDTO> list = carService.selectCarList();
-		System.out.println("listCars >>> " + list);
-		
-		return null;
+		return viewName;
 	}
-
+	
+	@Override
+	@RequestMapping("/ajaxCars.do")
+	@ResponseBody
+	public Map<String, List<AllCarDTO>> ajaxCars() {
+		
+		List<AllCarDTO> list = carService.selectCarList();
+		
+		Map<String, List<AllCarDTO>> map = new HashMap<>();
+		map.put("cars", list);
+		
+		return map;
+	}
+	
 	@Override
 	@RequestMapping("/carDetail.do")
 	public String carDetail(HttpServletRequest request) {

@@ -94,23 +94,58 @@
         	}
         }
     </style>
-    <script">
-    	window.onload = function() {
+    <script>
+    
+    window.onload = function() {
+
+    	var countPrint = 4;
+    	var startIndex = 1;
+    	var endIndex = startIndex + countPrint -1;
+    	
+    	document.querySelector('section').addEventListener('click', listCars);
+    	
+    function listCars() {
     		
 	    	let xhttp = new XMLHttpRequest();
-	    	xhttp.open('get', "${contextPath}/car/listCars.do", true);
-	    	httpRequest.responseType = "json";
+	    	xhttp.open('get', "${contextPath}/car/ajaxCars.do", true);
+	    	xhttp.responseType = "json";
 	    	xhttp.send();
 	    	
 	    	xhttp.onreadystatechange = function() {
 				if(this.readyState == 4 && this.status == 200) {
-					let listCars = this.response;
-					console.log(listCars);
 					
+					let jsonCars = this.response;
+					let arrayCars = jsonCars.cars;
+					let string = '';
+					
+					for(var i = startIndex-1; i < endIndex; i++) {
+						
+						if(i < arrayCars.length) {
+					       string = '<li class="item_list">' +
+				                '<figure>' +
+				                    '<a href="${contextPath }/car/carDetail.do"><img src="https://via.placeholder.com/200x200.png" alt=""></a>' +
+				                    '<figcaption>' +
+				                        '<p>'+ arrayCars[i].rentCarDTO.carNumber +'</p>' +
+				                        '<p>'+ arrayCars[i].carDTO.carModel +'</p>' +
+				                        '<p>'+ arrayCars[i].carDTO.carPrice +'</p>' +
+				                        '<p class="hidden">'+ arrayCars[i].carDTO.carSize +'</p>' +
+				                    '</figcaption>' +
+				                '</figure>' +
+				            '</li>';
+						
+					       document.querySelector('.item_wrapper').innerHTML += string;
+						} //if 끝
+						
+					}//for 끝
+	                startIndex += countPrint;
+	                endIndex += countPrint;
 				}
 			}
 	    	
-    	}
+    	} //listCars 끝
+    
+    
+    }
     </script>
 </head>
 <body>
@@ -125,20 +160,6 @@
         </div>
         <ul class="item_wrapper">
         
-<%--         <c:forEach var="car" items="${list }"> --%>
-<!--             <li class="item_list"> -->
-<!--                 <figure> -->
-<%--                     <a href="${contextPath }/car/carDetail.do"><img src="https://via.placeholder.com/200x200.png" alt=""></a> --%>
-<!--                     <figcaption> -->
-<%--                         <p>${car.rentCarDTO.carNumber }</p> --%>
-<%--                         <p>${car.rentCarDTO.carModel }</p> --%>
-<%--                         <p>${car.carDTO.carPrice }</p> --%>
-<%--                         <p class="hidden">${car.carDTO.carSize }</p> --%>
-<!--                     </figcaption> -->
-<!--                 </figure> -->
-<!--             </li> -->
-<%--          </c:forEach> --%>
-         
         </ul>
     </section>
 </body>
