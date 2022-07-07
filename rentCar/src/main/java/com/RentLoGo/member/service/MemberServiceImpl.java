@@ -20,8 +20,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void memberLogin(MemberDTO member) throws Exception {
-		memberMapper.memberLogin(member);
+	public MemberDTO memberLogin(MemberDTO member) throws Exception {
+		return memberMapper.memberLogin(member);
 	}
 	
 	@Override

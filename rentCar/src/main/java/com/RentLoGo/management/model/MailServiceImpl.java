@@ -28,7 +28,7 @@ public class MailServiceImpl implements MailService {
 			messageHelper.setFrom("hr02cho@naver.com", "메일인증");
 			messageHelper.setSubject(title);
 			messageHelper.setTo(memberEmail);
-			messageHelper.setText(content);
+			messageHelper.setText(content, true);
 			
 			mailSender.send(message);
 		} catch (MessagingException e) {

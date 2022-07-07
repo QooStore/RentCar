@@ -6,7 +6,7 @@ public interface MemberMapper {
 	
 	public void memberJoin(MemberDTO member);
 	
-	public void memberLogin(MemberDTO member);
+	public MemberDTO memberLogin(MemberDTO member);
 	
 	public void memberDelete(MemberDTO member);
 	

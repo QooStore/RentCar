@@ -249,3 +249,122 @@ select * from "car";
 select * from "member";
 insert into "member" values ('aaa','aaaa','1','에이','980314','00011112222','aa@naver.com',sysdate);
 insert into "member" values ('bbb','bbbb','1','비비','890704','00077774444','bb@naver.com',sysdate);
+
+-- rentCar에 넣을 시퀀스 추가. 차번호, 주행거리
+create SEQUENCE seq_carNumber
+minvalue 0
+increment by 3
+start with 1;
+
+create SEQUENCE seq_carDistance
+minvalue 0
+increment by 3800
+start with 80000;
+
+-- rentCar 값 넣기
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '쏘렌토', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '쏘렌토', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '쏘렌토', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '쏘렌토', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '쏘렌토', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '쏘렌토', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '쏘렌토', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '쏘렌토', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '쏘렌토', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '니로EV', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '니로EV', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '니로EV', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '니로EV', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '니로EV', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '니로EV', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '니로EV', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '팰리세이드', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '팰리세이드', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '팰리세이드', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '팰리세이드', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '팰리세이드', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '팰리세이드', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '팰리세이드', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '팰리세이드', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '팰리세이드', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '아반떼', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '아반떼', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '아반떼', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '아반떼', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '테슬라모델3', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '테슬라모델3', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '테슬라모델3', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '테슬라모델3', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '테슬라모델3', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '셀토스', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '셀토스', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '셀토스', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '셀토스', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '소나타', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '소나타', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '소나타', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '소나타', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '티볼리', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '티볼리', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '티볼리', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '티볼리', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '티볼리', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '티볼리', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '티볼리', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '티볼리', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '티볼리', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '티볼리', 'white', seq_carDistance.nextval);
+insert into "rent_car" 
+values (to_char(seq_carNumber.nextval), '티볼리', 'white', seq_carDistance.nextval);
