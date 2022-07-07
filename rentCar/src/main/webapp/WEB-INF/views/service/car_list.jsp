@@ -106,46 +106,20 @@
             <div>검색아이콘<input type="hidden"/></div>
         </div>
         <ul class="item_wrapper">
+        
+        <c:forEach var="car" items="${list }">
             <li class="item_list">
                 <figure>
                     <a href="${contextPath }/car/carDetail.do"><img src="https://via.placeholder.com/200x200.png" alt=""></a>
                     <figcaption>
-                        <p>이름</p>
-                        <p>가격</p>
-                        <p class="hidden">차크기</p>
+                        <p>${car.rentCarDTO.carNumber }</p>
+                        <p>${car.rentCarDTO.carModel }</p>
+                        <p>${car.carDTO.carPrice }</p>
+                        <p class="hidden">${car.carDTO.carSize }</p>
                     </figcaption>
                 </figure>
             </li>
-            <li class="item_list">
-                <figure>
-                    <a href="${contextPath }/car/carDetail.do"><img src="https://via.placeholder.com/200x200.png" alt=""></a>
-                    <figcaption>
-                        <p>이름</p>
-                        <p>가격</p>
-                        <p class="hidden">차크기</p>
-                    </figcaption>
-                </figure>
-            </li>
-            <li class="item_list">
-                <figure>
-                    <a href="${contextPath }/car/carDetail.do"><img src="https://via.placeholder.com/200x200.png" alt=""></a>
-                    <figcaption>
-                        <p>이름</p>
-                        <p>가격</p>
-                        <p class="hidden">차크기</p>
-                    </figcaption>
-                </figure>
-            </li>
-            <li class="item_list">
-                <figure>
-                    <a href="${contextPath }/car/carDetail.do"><img src="https://via.placeholder.com/200x200.png" alt=""></a>
-                    <figcaption>
-                        <p>이름</p>
-                        <p>가격</p>
-                        <p class="hidden">차크기</p>
-                    </figcaption>
-                </figure>
-            </li>
+         </c:forEach>
         </ul>
     </section>
 </body>

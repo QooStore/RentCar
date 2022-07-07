@@ -42,6 +42,10 @@ public class CarControllerImpl implements CarController {
 		String viewName = (String) request.getAttribute("viewName");
 		viewName = viewName.substring(viewName.lastIndexOf("/")+1, viewName.length());
 		
+		List<AllCarDTO> list =	carService.selectCarList();
+		request.setAttribute("list", list);
+		System.out.println("listCars >>> " + list);
+		
 		return viewName;
 	}
 

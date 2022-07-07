@@ -8,4 +8,7 @@ public interface CarService {
 	
 	/* manage rentcar 조회 */
 	public List<AllCarDTO> selectManageRentCar();
+	
+	// 상품리스트
+	public List<AllCarDTO> selectCarList();
 }

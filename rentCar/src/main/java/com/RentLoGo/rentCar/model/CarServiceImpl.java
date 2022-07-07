@@ -31,4 +31,11 @@ public class CarServiceImpl implements CarService{
 		return list;
 	}
 
+	@Override
+	public List<AllCarDTO> selectCarList() {
+		
+		System.out.println("carService 실행....");
+		return carMapper.selectCarList();
+	}
+
 }

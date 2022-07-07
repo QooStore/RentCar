@@ -7,4 +7,6 @@ public interface CarMapper {
 	public List<CarDTO> selectAllrentCar();
 	
 	public List<AllCarDTO> selectManageRentCar();
+	
+	public List<AllCarDTO> selectCarList();
 }
