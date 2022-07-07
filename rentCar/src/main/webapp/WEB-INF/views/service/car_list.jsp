@@ -66,7 +66,13 @@
         }
 
         .hidden {
-            visibility: hidden;
+/*             visibility: hidden; */
+display: none;
+
+        }
+        
+        .d-none{
+        	display: none;
         }
         
         @media(max-width: 960px) {
@@ -120,7 +126,6 @@
 	    if(!timer) { //쓰로틀링
 	        timer = setTimeout(function() {
 	            timer = null;
-	        	console.log('참고');
 	            if (docElement.scrollTop < docElement.scrollHeight - window.innerHeight) {
 	            	return null; // 스크롤 끝 판별
 	            }else {
@@ -168,9 +173,116 @@
 	                startIndex += countPrint;
 	                endIndex += countPrint;
 				}
-			}
+				
+		    	//검색
+		    	let keywords = document.querySelectorAll('.item_list .keyword');
+		    	let arrayWords = [];
+		    	let counter = 1;
+		    	
+		    	for(let keyword of keywords) {
+		    		arrayWords.push({
+		    			id:counter++,
+		    			text:keyword.textContent
+		    		});
+		    	}
+		    	
+		    	let searchInput = document.querySelector('input[type="search"]');
+		    	let itemList = document.querySelectorAll('.item_wrapper .item_list');
+
+		    	
+		    	searchInput.addEventListener('keyup', keyupHandler);
+		    	
+    		    let timer02;
+		    	function keyupHandler() {
+		    		
+		    		clearTimeout(timer02);
+		    		timer02 = setTimeout(function(){
+		    			
+				    		for(let item of itemList) {
+				    			item.classList.add('d-none');
+				    		}
+				    		
+				    		let inputWords = searchInput.value;
+				    		let filteredArray = arrayWords.filter(element => element.text.toLowerCase().includes(inputWords.toLowerCase()));
+				    		
+				    		if(filteredArray.length > 0) {
+				    			for(let el of filteredArray) {
+				    				document.querySelector('.item_wrapper li:nth-child('+el.id+')').classList.remove('d-none');
+				    			}
+				    		}
+		    		
+		    			
+		    		}, 200);
+		    		
+		    		
+		    	}
+		    	
+		    	let words = document.querySelectorAll('.item_list figcaption p:last-child');
+		    	let keyArray = [];
+		    	let count = 1;
+		    	
+		    	for(let word of words) {
+		    		keyArray.push({
+		    			id:count++,
+		    			text:word.textContent
+		    		});
+		    	}
+		    	
+		    	let allSel = document.querySelector('.menu_wrapper ul li:first-child a');
+		    	let small = document.querySelector('.menu_wrapper ul li:nth-child(2) a');
+		    	let middle = document.querySelector('.menu_wrapper ul li:nth-child(3) a');
+		    	let large = document.querySelector('.menu_wrapper ul li:nth-child(4) a');
+		    	let suv = document.querySelector('.menu_wrapper ul li:last-child a');
+		    	
+		    	allSel.addEventListener('click', function(e) {
+		    		
+				let alink = document.querySelectorAll('.menu_wrapper ul li a');
+					for(let i = 0; i < alink.length; i++) {
+						alink[i].style.color = 'black';
+					}
+					
+					e.preventDefault();
+					this.style.color = 'blue';
+					for(let item of itemList) {
+		    			item.classList.remove('d-none');
+		    		}
+		    	});
+		    	small.addEventListener('click', clickHandler);
+		    	middle.addEventListener('click', clickHandler);
+		    	large.addEventListener('click', clickHandler);
+		    	suv.addEventListener('click', clickHandler);
+		    	
+				function clickHandler(e) {
+					
+					let alink = document.querySelectorAll('.menu_wrapper ul li a');
+					
+					for(let i = 0; i < alink.length; i++) {
+						alink[i].style.color = 'black';
+					}
+					
+					e.preventDefault();
+					this.style.color = 'blue';
+					
+					for(let item of itemList) {
+		    			item.classList.add('d-none');
+		    		}
+					
+					let inputText = this.innerText;
+					let filteredArray = keyArray.filter(element => element.text.toLowerCase().includes(inputText.toLowerCase()));
+					
+					if(filteredArray.length > 0) {
+		    			for(let el of filteredArray) {
+		    				document.querySelector('.item_wrapper li:nth-child('+el.id+')').classList.remove('d-none');
+		    			}
+		    		}
+				}		            
+	
+		    	
+			}//ajax state 끝
 	    	
     	} //listCars 끝
+    	
+    	
     
     }
     </script>
@@ -179,12 +291,13 @@
     <section class="items_container">
         <div class="menu_wrapper">
             <ul class="car_category">
+                <li><a href="#">전체</a></li>
                 <li><a href="#">소형</a></li>
                 <li><a href="#">중형</a></li>
                 <li><a href="#">대형</a></li>
                 <li><a href="#">SUV</a></li>
             </ul>
-            <div>검색아이콘<input type="search" class="hidden"/></div>
+            <div>검색아이콘<input type="search"/></div>
         </div>
         <ul class="item_wrapper">
         
