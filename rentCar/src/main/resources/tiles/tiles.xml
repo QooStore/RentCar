@@ -34,6 +34,10 @@
       <put-attribute name="body" value="/WEB-INF/views/management/member_manage.jsp" />
    </definition>
    
+   <definition name="manageCar" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/management/car_manage.jsp" />
+   </definition>
+   
    <definition name="agree" extends="baseLayout">
       <put-attribute name="body" value="/WEB-INF/views/member/clause_agree.jsp" />
    </definition>

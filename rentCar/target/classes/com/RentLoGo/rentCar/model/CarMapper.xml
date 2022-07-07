@@ -21,9 +21,10 @@
 	</resultMap>
 	
 	<resultMap id="allCarResult" type="allCarDTO">
-		<collection property="carDTO" column="carResult" />
-		<collection property="rentCarDTO" column="rentCarResult" />
+		<collection property="carDTO" resultMap="carResult" />
+		<collection property="rentCarDTO" resultMap="rentCarResult" />
 	</resultMap>
+	
 	
 	<select id="selectAllrentCar" resultMap="carResult">
 <!-- 	<select id="selectAllrentCar" resultType="com.RentLoGo.rentCar.model.CarDTO"> -->
@@ -33,11 +34,19 @@
 	</select>
 	
 	<select id="selectCarList" resultMap="allCarResult">
-		<![CDATA[
-			select r."car_number", c."car_model", c."car_price", c."car_size"
-			from "car" c, "rent_car" r
-			where c."car_model" = r."car_model"
-		]]>
-	</select>
+      <![CDATA[
+         select r."car_number", c."car_model", c."car_price", c."car_size"
+         from "car" c, "rent_car" r
+         where c."car_model" = r."car_model"
+      ]]>
+   </select>
 	
+<!-- RentCarDTO & CarDTO 조회 manage -->		
+	<select id="selectManageRentCar" resultMap="allCarResult">
+      <![CDATA[
+         select * from "rent_car", "car" 
+         where "rent_car"."car_model" = "car"."car_model"
+      ]]>
+	</select>
+
 </mapper>

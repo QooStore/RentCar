@@ -5,4 +5,7 @@ import java.util.List;
 public interface CarService {
 
 	public List<CarDTO> selectAllrentCar();
+	
+	/* manage rentcar 조회 */
+	public List<AllCarDTO> selectManageRentCar();
 }

@@ -5,4 +5,6 @@ import java.util.List;
 public interface CarMapper {
 
 	public List<CarDTO> selectAllrentCar();
+	
+	public List<AllCarDTO> selectManageRentCar();
 }

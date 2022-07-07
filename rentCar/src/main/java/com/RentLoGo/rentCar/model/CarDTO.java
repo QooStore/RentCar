@@ -1,5 +1,7 @@
 package com.RentLoGo.rentCar.model;
 
+import org.springframework.stereotype.Component;
+
 import lombok.Data;
 
 //CREATE TABLE "car" (
@@ -11,6 +13,7 @@ import lombok.Data;
 //		);
 
 @Data
+@Component
 public class CarDTO {
 	
 	private String carModel;
