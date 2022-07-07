@@ -44,5 +44,12 @@ public class CarControllerImpl implements CarController {
 		return viewName;
 	}
 
+	@Override
+	@RequestMapping("/carDetail.do")
+	public String carDetail() {
+
+		return null;
+	}
+
 }
 

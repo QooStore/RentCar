@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,7 +82,7 @@
         <ul class="item_wrapper">
             <li class="item_list">
                 <figure>
-                    <img src="https://via.placeholder.com/200x200.png" alt="">
+                    <a href="${contextPath }/car/carDetail.do"><img src="https://via.placeholder.com/200x200.png" alt=""></a>
                     <figcaption>
                         <p>이름</p>
                         <p>가격</p>
@@ -90,7 +92,7 @@
             </li>
             <li class="item_list">
                 <figure>
-                    <img src="https://via.placeholder.com/200x200.png" alt="">
+                    <a href="${contextPath }/car/carDetail.do"><img src="https://via.placeholder.com/200x200.png" alt=""></a>
                     <figcaption>
                         <p>이름</p>
                         <p>가격</p>
@@ -100,7 +102,7 @@
             </li>
             <li class="item_list">
                 <figure>
-                    <img src="https://via.placeholder.com/200x200.png" alt="">
+                    <a href="${contextPath }/car/carDetail.do"><img src="https://via.placeholder.com/200x200.png" alt=""></a>
                     <figcaption>
                         <p>이름</p>
                         <p>가격</p>
@@ -110,7 +112,7 @@
             </li>
             <li class="item_list">
                 <figure>
-                    <img src="https://via.placeholder.com/200x200.png" alt="">
+                    <a href="${contextPath }/car/carDetail.do"><img src="https://via.placeholder.com/200x200.png" alt=""></a>
                     <figcaption>
                         <p>이름</p>
                         <p>가격</p>
