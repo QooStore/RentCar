@@ -101,9 +101,37 @@
     	var countPrint = 4;
     	var startIndex = 1;
     	var endIndex = startIndex + countPrint -1;
+    	var docElement = document.documentElement;
+    	var initialHeight = docElement.scrollHeight;
     	
-    	document.querySelector('section').addEventListener('click', listCars);
-    	
+    	let setInt = setInterval(function() { //스크롤 생길때까지 로드
+    	    
+    		listCars();
+
+            let currentHeight = docElement.scrollHeight;
+
+            if(initialHeight != currentHeight) clearInterval(setInt);
+    	}, 100);
+
+
+  let timer;
+
+  window.addEventListener('scroll', function() {
+	    if(!timer) { //쓰로틀링
+	        timer = setTimeout(function() {
+	            timer = null;
+	        	console.log('참고');
+	            if (docElement.scrollTop < docElement.scrollHeight - window.innerHeight) {
+	            	return null; // 스크롤 끝 판별
+	            }else {
+	            	listCars();
+	            }
+	            
+	        }, 500);
+    	}
+  });
+  
+    
     function listCars() {
     		
 	    	let xhttp = new XMLHttpRequest();
@@ -126,7 +154,7 @@
 				                    '<a href="${contextPath }/car/carDetail.do"><img src="https://via.placeholder.com/200x200.png" alt=""></a>' +
 				                    '<figcaption>' +
 				                        '<p>'+ arrayCars[i].rentCarDTO.carNumber +'</p>' +
-				                        '<p>'+ arrayCars[i].carDTO.carModel +'</p>' +
+				                        '<p class="keyword">'+ arrayCars[i].carDTO.carModel +'</p>' +
 				                        '<p>'+ arrayCars[i].carDTO.carPrice +'</p>' +
 				                        '<p class="hidden">'+ arrayCars[i].carDTO.carSize +'</p>' +
 				                    '</figcaption>' +
@@ -144,7 +172,6 @@
 	    	
     	} //listCars 끝
     
-    
     }
     </script>
 </head>
@@ -152,15 +179,17 @@
     <section class="items_container">
         <div class="menu_wrapper">
             <ul class="car_category">
-                <li><a href="#">경차</a></li>
-                <li><a href="#">세단</a></li>
+                <li><a href="#">소형</a></li>
+                <li><a href="#">중형</a></li>
+                <li><a href="#">대형</a></li>
                 <li><a href="#">SUV</a></li>
             </ul>
-            <div>검색아이콘<input type="hidden"/></div>
+            <div>검색아이콘<input type="search" class="hidden"/></div>
         </div>
         <ul class="item_wrapper">
         
         </ul>
     </section>
+    
 </body>
 </html>
