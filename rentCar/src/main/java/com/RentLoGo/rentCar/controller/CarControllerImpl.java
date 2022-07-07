@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,16 +38,16 @@ public class CarControllerImpl implements CarController {
 
 	@Override
 	@RequestMapping("/listCars.do")
-	public String listCars(HttpServletRequest request) {
+//	@ResponseBody
+	public ResponseEntity<List<AllCarDTO>> listCars(HttpServletRequest request) {
 
 		String viewName = (String) request.getAttribute("viewName");
 		viewName = viewName.substring(viewName.lastIndexOf("/")+1, viewName.length());
 		
-		List<AllCarDTO> list =	carService.selectCarList();
-		request.setAttribute("list", list);
+		List<AllCarDTO> list = carService.selectCarList();
 		System.out.println("listCars >>> " + list);
 		
-		return viewName;
+		return null;
 	}
 
 	@Override

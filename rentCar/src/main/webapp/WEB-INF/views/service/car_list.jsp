@@ -94,6 +94,24 @@
         	}
         }
     </style>
+    <script">
+    	window.onload = function() {
+    		
+	    	let xhttp = new XMLHttpRequest();
+	    	xhttp.open('get', "${contextPath}/car/listCars.do", true);
+	    	httpRequest.responseType = "json";
+	    	xhttp.send();
+	    	
+	    	xhttp.onreadystatechange = function() {
+				if(this.readyState == 4 && this.status == 200) {
+					let listCars = this.response;
+					console.log(listCars);
+					
+				}
+			}
+	    	
+    	}
+    </script>
 </head>
 <body>
     <section class="items_container">
@@ -107,19 +125,20 @@
         </div>
         <ul class="item_wrapper">
         
-        <c:forEach var="car" items="${list }">
-            <li class="item_list">
-                <figure>
-                    <a href="${contextPath }/car/carDetail.do"><img src="https://via.placeholder.com/200x200.png" alt=""></a>
-                    <figcaption>
-                        <p>${car.rentCarDTO.carNumber }</p>
-                        <p>${car.rentCarDTO.carModel }</p>
-                        <p>${car.carDTO.carPrice }</p>
-                        <p class="hidden">${car.carDTO.carSize }</p>
-                    </figcaption>
-                </figure>
-            </li>
-         </c:forEach>
+<%--         <c:forEach var="car" items="${list }"> --%>
+<!--             <li class="item_list"> -->
+<!--                 <figure> -->
+<%--                     <a href="${contextPath }/car/carDetail.do"><img src="https://via.placeholder.com/200x200.png" alt=""></a> --%>
+<!--                     <figcaption> -->
+<%--                         <p>${car.rentCarDTO.carNumber }</p> --%>
+<%--                         <p>${car.rentCarDTO.carModel }</p> --%>
+<%--                         <p>${car.carDTO.carPrice }</p> --%>
+<%--                         <p class="hidden">${car.carDTO.carSize }</p> --%>
+<!--                     </figcaption> -->
+<!--                 </figure> -->
+<!--             </li> -->
+<%--          </c:forEach> --%>
+         
         </ul>
     </section>
 </body>
