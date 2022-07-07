@@ -6,5 +6,7 @@
 	<typeAliases>
 		<typeAlias type="com.RentLoGo.rentCar.model.CarDTO" alias="carDTO"/>
 		<typeAlias type="com.RentLoGo.member.model.MemberDTO" alias="memberDTO"/>
+		<typeAlias type="com.RentLoGo.rentCar.model.RentCarDTO" alias="rentCarDTO"/>
+		<typeAlias type="com.RentLoGo.rentCar.model.AllCarDTO" alias="allCarDTO"/>
 	</typeAliases>
 </configuration>

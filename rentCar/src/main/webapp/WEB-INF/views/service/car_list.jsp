@@ -110,9 +110,10 @@
                 <figure>
                     <a href="${contextPath }/car/carDetail.do"><img src="https://via.placeholder.com/200x200.png" alt=""></a>
                     <figcaption>
-                        <p>이름</p>
-                        <p>가격</p>
-                        <p class="hidden">차크기</p>
+                    	<p>carNumber</p>
+                        <p>carModel</p>
+                        <p>carPrice</p>
+                        <p class="hidden">carSize</p>
                     </figcaption>
                 </figure>
             </li>
