@@ -32,4 +32,12 @@
       ]]>
 	</select>
 	
+	<select id="selectCarList" resultMap="allCarResult">
+		<![CDATA[
+			select r."car_number", c."car_model", c."car_price", c."car_size"
+			from "car" c, "rent_car" r
+			where c."car_model" = r."car_model"
+		]]>
+	</select>
+	
 </mapper>
