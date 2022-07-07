@@ -42,7 +42,7 @@
       <put-attribute name="body" value="/WEB-INF/views/service/car_list.jsp" />
    </definition>
    
-      <definition name="carDetail" extends="baseLayout">
+   <definition name="carDetail" extends="baseLayout">
       <put-attribute name="body" value="/WEB-INF/views/service/car_detail.jsp" />
    </definition>
    

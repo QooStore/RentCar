@@ -8,5 +8,5 @@ public interface CarController {
 
 	public String form(Map info, HttpServletRequest request);
 	public String listCars(HttpServletRequest request);
-	public String carDetail();
+	String carDetail(HttpServletRequest request);
 }

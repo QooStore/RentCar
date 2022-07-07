@@ -46,9 +46,12 @@ public class CarControllerImpl implements CarController {
 
 	@Override
 	@RequestMapping("/carDetail.do")
-	public String carDetail() {
+	public String carDetail(HttpServletRequest request) {
 
-		return null;
+		String viewName = (String) request.getAttribute("viewName");
+		viewName = viewName.substring(viewName.lastIndexOf("/")+1, viewName.length());
+		
+		return viewName;
 	}
 
 }
