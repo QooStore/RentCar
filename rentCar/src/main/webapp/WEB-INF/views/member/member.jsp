@@ -123,6 +123,7 @@
 	            //HTTP 요청 헤더 설정
 	            xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8;');
 	            
+	            console.log(JSON.stringify(requestJSON));
 	    		xhttp.send(JSON.stringify(requestJSON));
 	    		
 	    		xhttp.onreadystatechange = function() {

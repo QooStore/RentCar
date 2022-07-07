@@ -2,9 +2,11 @@ package com.RentLoGo.member.controller;
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -75,6 +77,7 @@ public class MemberControllerImpl implements MemberController{
 		return viewName;
 	}
 	
+	//로그인
 	@Override
 	@RequestMapping(value="/memberLogin.do", method=RequestMethod.POST)
 	public String login(HttpServletRequest request, MemberDTO member, RedirectAttributes rttr) throws Exception {
@@ -114,9 +117,26 @@ public class MemberControllerImpl implements MemberController{
 			return "redirect:/member/login.do";
 		}
 		
+		if(member.getMemberClass() == "2") {
+			System.out.println("매니저 로그인 ㅋㅋㅋ");
+		}
 		session.setAttribute("member", mto);
 		System.out.println("로그인 성공 ~~~~~");
 		return "redirect:/car/indexForm.do";
+	}
+	
+	//로그아웃
+	@Override
+	@RequestMapping("/logout.do")
+	public String logoutMainGET(HttpServletRequest request) throws Exception{
+		
+		System.out.println("logout 되었음 ~~~~~");
+		HttpSession session = request.getSession();
+		
+		session.invalidate();
+		
+		return "redirect:/car/indexForm.do";
+
 	}
 
 	// 회원정보수정

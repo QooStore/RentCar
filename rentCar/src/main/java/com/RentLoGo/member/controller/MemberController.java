@@ -29,6 +29,9 @@ public interface MemberController {
 	public String login(HttpServletRequest request);
 	public String login(HttpServletRequest request, MemberDTO member, RedirectAttributes rttr) throws Exception;
 	
+	//로그아웃
+	public String logoutMainGET(HttpServletRequest request) throws Exception;
+	
 	//회원정보수정
 	public String modifyForm(HttpServletRequest request);
 	public String modify(MemberDTO member, RedirectAttributes redirect);
