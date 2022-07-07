@@ -30,7 +30,8 @@
         }
 
         .items_container {
-            width: 1200px;
+            width: 100%;
+            min-width: 500px;
         }
 
         .items_container .menu_wrapper {
@@ -66,6 +67,31 @@
 
         .hidden {
             visibility: hidden;
+        }
+        
+        @media(max-width: 960px) {
+        	.item_wrapper {
+        	grid-template-columns: repeat(2, 1fr);
+        	}
+        	
+        }
+        
+        @media(max-width: 768px) {
+        	 .items_container .menu_wrapper {
+        	 
+        	 margin-left: auto;
+        	 }
+        }
+        
+        @media(max-width: 480px) {
+           	.item_wrapper {
+        		grid-template-columns: 1fr;
+        		margin: 0 auto;
+        	}
+        	
+        	.items_container .item_wrapper {
+        		width: 200px;
+        	}
         }
     </style>
 </head>
