@@ -85,8 +85,7 @@ public class MemberControllerImpl implements MemberController{
 		System.out.println("member >>> " + member);
 		
 		HttpSession session = request.getSession();
-		MemberDTO mto = null;
-		mto = memberService.memberLogin(member);
+		MemberDTO mto = memberService.memberLogin(member);
 		
 		System.out.println("데이터 >>>>>>>>> " + mto);
 //		String id = member.getMemberId();
@@ -117,7 +116,7 @@ public class MemberControllerImpl implements MemberController{
 			return "redirect:/member/login.do";
 		}
 		
-		if(member.getMemberClass() == "2") {
+		if("2".equals(mto.getMemberClass())) {
 			System.out.println("매니저 로그인 ㅋㅋㅋ");
 		}
 		session.setAttribute("member", mto);

@@ -29,7 +29,7 @@
 	<select id="memberLogin" parameterType="memberDTO" resultMap="memberResult">
 	<![CDATA[
 		select "member_id", "member_pw", "member_class" from "member" 
-		where "member_id" = #{memberId} and "member_pw" = #{memberPw} and "member_class" = #{memberClass}
+		where "member_id" = #{memberId} and "member_pw" = #{memberPw}
 	]]>
 	
 	</select>
