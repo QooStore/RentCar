@@ -50,7 +50,8 @@
 	                <c:choose>
 	                	<c:when test = "${member.memberClass == 2 }">
 	                	<div class = "login_success_area">
-	                		<span>관리자: ${member.memberId } 화면</span>
+	                		<div>관리자: ${member.memberId }</div>
+	                		<div><a href="${contextPath }/manager/managerForm.do">관리하기</a></div>
 	                	</div>
 	                	</c:when>
 	                	<c:otherwise>

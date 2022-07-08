@@ -50,4 +50,8 @@
       <put-attribute name="body" value="/WEB-INF/views/service/car_detail.jsp" />
    </definition>
    
+   <definition name="managerForm" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/management/manager_menu.jsp" />
+   </definition>
+   
 </tiles-definitions>
