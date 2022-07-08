@@ -160,7 +160,7 @@ display: none;
 						if(i < arrayCars.length) {
 					       string = '<li class="item_list">' +
 				                '<figure>' +
-				                    '<a href="${contextPath }/car/carDetail.do"><img src="https://via.placeholder.com/400x400.png" alt=""></a>' +
+				                    '<a href="${contextPath }/car/carDetail.do"><img src="/rentCar/resources/images/rentCar/'+ arrayCars[i].rentCarDTO.carNumber +'.png" alt=""></a>' +
 				                    '<figcaption>' +
 				                        '<p>'+ arrayCars[i].rentCarDTO.carNumber +'</p>' +
 				                        '<p class="keyword">'+ arrayCars[i].carDTO.carModel +'</p>' +
