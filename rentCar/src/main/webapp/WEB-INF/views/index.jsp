@@ -170,7 +170,7 @@
         
           <c:forEach var="car" items="${list }">
 	          <div class="carousel-item active favorites">
-	            <img src="${contextPath }/download?imageFileName=${car.carModel }.png" class="d-block w-100" alt="...">
+	            <img src="/rentCar/resources/images/temp/${car.carModel }.png" class="d-block w-100" alt="...">
 	            <div class="carousel-caption d-none d-md-block">
 	              <h5>${car.carModel }</h5>
 	              <p>${car.carPrice }</p>
