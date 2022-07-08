@@ -21,7 +21,7 @@
         <div>
             <a href="#">단기 렌터카</a>
             <ul>
-                <li><a href="#">예약하기</a></li>
+                <li><a href="${contextPath }/car/listCars.do">예약하기</a></li>
                 <li><a href="#">이용안내</a></li>
             </ul>
         </div>
@@ -31,8 +31,6 @@
             <input type="checkbox" class="member_menu" id="member_menu" />
             <label for="member_menu" class="burger"><i class="fa-solid fa-bars"></i></label>
             <ul>
-                
-                
                 
                 <!-- 로그인 하지 않은 상태 -->
                 <c:if test="${member == null }">

@@ -154,7 +154,6 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-
 		
       <div id="carouselExampleCaptions" class="carousel slide favorites favorites_outside" data-bs-ride="false">
         <div class="carousel-indicators">
@@ -196,7 +195,7 @@
       		<div class="joinFinished"><span>회원 가입을 <br/>완료하셨습니다!!</span></div>
       </div>
      </c:when>
-	</c:choose> 
+	</c:choose>
 
 <!-- 회원정보수정 완료 시 -->   
     <c:choose>

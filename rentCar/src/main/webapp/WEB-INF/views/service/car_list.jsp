@@ -65,6 +65,10 @@
         	margin-right: 35px;
         }
 
+		.item_list figure img {
+			width: 200px;
+			height: 200px;
+		}
         .hidden {
 /*             visibility: hidden; */
 display: none;
@@ -156,7 +160,7 @@ display: none;
 						if(i < arrayCars.length) {
 					       string = '<li class="item_list">' +
 				                '<figure>' +
-				                    '<a href="${contextPath }/car/carDetail.do"><img src="https://via.placeholder.com/200x200.png" alt=""></a>' +
+				                    '<a href="${contextPath }/car/carDetail.do"><img src="https://via.placeholder.com/400x400.png" alt=""></a>' +
 				                    '<figcaption>' +
 				                        '<p>'+ arrayCars[i].rentCarDTO.carNumber +'</p>' +
 				                        '<p class="keyword">'+ arrayCars[i].carDTO.carModel +'</p>' +
