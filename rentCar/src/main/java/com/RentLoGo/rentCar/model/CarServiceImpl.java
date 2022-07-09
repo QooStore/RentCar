@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.RentLoGo.member.model.MemberDTO;
+
 @Service("carService")
 public class CarServiceImpl implements CarService{
 
@@ -21,6 +23,7 @@ public class CarServiceImpl implements CarService{
 		return list;
 	}
 	
+	//manage rentCar
 	@Override
 	public List<AllCarDTO> selectManageRentCar() {
 
@@ -30,12 +33,20 @@ public class CarServiceImpl implements CarService{
 		
 		return list;
 	}
-
+	@Override
+	public void deleteManageRentCar(AllCarDTO allCar) throws Exception {
+		carMapper.deleteManageRentCar(allCar);
+	}
+	
+	
+	//
 	@Override
 	public List<AllCarDTO> selectCarList() {
 		
 		System.out.println("carService 실행....");
 		return carMapper.selectCarList();
 	}
+	
+	
 
 }

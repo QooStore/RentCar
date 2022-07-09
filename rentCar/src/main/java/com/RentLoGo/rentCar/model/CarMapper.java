@@ -6,8 +6,9 @@ public interface CarMapper {
 
 	public List<CarDTO> selectAllrentCar();
 	
+	//manageCar
 	public List<AllCarDTO> selectManageRentCar();
-	public List<AllCarDTO> deleteManageRentCar();
+	public void deleteManageRentCar(AllCarDTO allCar);
 	
 	public List<AllCarDTO> selectCarList();
 }

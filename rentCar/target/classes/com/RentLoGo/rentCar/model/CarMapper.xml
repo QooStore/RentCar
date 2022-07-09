@@ -51,12 +51,12 @@
 	</select>
 	
 <!-- RentCarDTO & CarDTO 삭제 manage -->		
-	<select id="deleteManageRentCar" resultMap="allCarResult">
+	<delete id="deleteManageRentCar" parameterType="allCarDTO">
       <![CDATA[
-<!--          delete * from "rent_car", "car" 
-         where "rent_car"."car_model" = "car"."car_model"
-         and "rent_car"."car_number" = #{car_number} -->
+		delete * from "rent_car", "car" 
+        where "rent_car"."car_model" = "car"."car_model"
+        and "rent_car"."car_number" = #{car_number}
       ]]>
-	</select>
+	</delete>
 
 </mapper>

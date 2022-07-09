@@ -57,7 +57,8 @@ $(document).ready(function(){
 	        <th>${allCar.carDTO.carMade }</th>
 	        <th>${allCar.carDTO.carPrice }</th>
 	        <th><input type="button" value="수정" onclick="location='수정폼'"></th>
-	        <th><input type="button" value="삭제" class=".delete_rentCar"></th>
+	        <th action="${contextPath }/manager/deleteManageRentCar.do" method="post" novalidate class="carDeleteForm">
+	        <input type="button" value="삭제" class=".delete_rentCar"></th>
     	</tr>
      </c:forEach>
 </table>
