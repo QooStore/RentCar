@@ -1,6 +1,6 @@
 package com.RentLoGo.rentCar.model;
 
-import java.util.List; 
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +29,13 @@ public class CarServiceImpl implements CarService{
 		System.out.println("carService 실행 후 list >>>>" + list );
 		
 		return list;
+	}
+
+	@Override
+	public List<AllCarDTO> selectCarList() {
+		
+		System.out.println("carService 실행....");
+		return carMapper.selectCarList();
 	}
 
 }

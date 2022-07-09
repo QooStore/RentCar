@@ -2,6 +2,7 @@ package com.RentLoGo.member.controller;
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
@@ -76,6 +77,7 @@ public class MemberControllerImpl implements MemberController{
 		return viewName;
 	}
 	
+	//로그인
 	@Override
 	@RequestMapping(value="/memberLogin.do", method=RequestMethod.POST)
 	public String login(HttpServletRequest request, MemberDTO member, RedirectAttributes rttr) throws Exception {
@@ -92,9 +94,10 @@ public class MemberControllerImpl implements MemberController{
 //		
 //		System.out.println("아이디 : >>> " + id);
 //		System.out.println("비번 : >>> " + pw);
-//		
-//		List<MemberDTO> list =	memberService.AllMember();
-//		System.out.println("all list " + list);
+		
+		List<MemberDTO> list = memberService.selectAllMember();
+		System.out.println("all list >>>>> " + list);
+		
 //		
 //		if(list.contains(id)) {
 //			session.setAttribute("member", member);
@@ -115,9 +118,31 @@ public class MemberControllerImpl implements MemberController{
 			return "redirect:/member/login.do";
 		}
 		
-		session.setAttribute("member", mto);
-		System.out.println("로그인 성공 ~~~~~");
+		if(mto.getMemberId().equals("admin")) {
+			System.out.println("매니저 로그인 ~~~~");
+			session.setAttribute("member", mto);
+			return "redirect:/car/indexForm.do";
+		}
+		else {
+			session.setAttribute("member", mto);
+			System.out.println("회원 로그인 성공 ~~~~~");
+			return "redirect:/car/indexForm.do";
+		}
+
+	}
+	
+	//로그아웃
+	@Override
+	@RequestMapping("/logout.do")
+	public String logoutMainGET(HttpServletRequest request) throws Exception{
+		
+		System.out.println("logout 되었음 ~~~~~");
+		HttpSession session = request.getSession();
+		
+		session.invalidate();
+		
 		return "redirect:/car/indexForm.do";
+
 	}
 
 	// 회원정보수정

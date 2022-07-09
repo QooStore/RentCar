@@ -31,8 +31,40 @@
             <input type="checkbox" class="member_menu" id="member_menu" />
             <label for="member_menu" class="burger"><i class="fa-solid fa-bars"></i></label>
             <ul>
-                <li><a href="${contextPath }/member/memberForm.do"><i class="fa-solid fa-plus headerIcons"></i>회원가입</a></li>
-                <li><a href="${contextPath }/member/login.do"><i class="fa-solid fa-clipboard-user headerIcons"></i>로그인</a></li>
+                
+                
+                
+                <!-- 로그인 하지 않은 상태 -->
+                <c:if test="${member == null }">
+                	<li><a href="${contextPath }/member/memberForm.do"><i class="fa-solid fa-plus headerIcons"></i>회원가입</a></li>
+                	<li><a href="${contextPath }/member/login.do"><i class="fa-solid fa-clipboard-user headerIcons"></i>로그인</a></li>
+                </c:if>
+                <!-- 로그인한 상태 -->
+<%--                 <c:if test="${member != null }">
+                	<div class = "login_success_area">
+                		<span>회원: ${member.memberId } 님 환영합니다</span>
+                	</div>
+                	<li><a href="${contextPath }/member/logout.do"><i class="fa-solid fa-clipboard-user headerIcons"></i>로그아웃</a></li>
+                </c:if> --%>
+               
+               	<c:if test="${member != null }">
+                	
+	                <c:choose>
+	                	<c:when test = "${member.memberId == 'admin' }">
+	                	<li><a href="${contextPath }/management/manager.do">관리자 페이지</a></li>
+	                	<div class = "login_success_area">
+	                		<span>관리자:${member.memberId }</span>
+	                	</div>
+	                	</c:when>
+	                	<c:otherwise>
+	                	<div class = "login_success_area">
+	                		<span>회원: ${member.memberId } 님 환영합니다</span>
+	                	</div>
+	                	</c:otherwise>
+	                </c:choose>
+	                <li><a href="${contextPath }/member/logout.do"><i class="fa-solid fa-clipboard-user headerIcons"></i>로그아웃</a></li> 
+                </c:if>
+                
                 <li><a href="#"><i class="fa-solid fa-align-right headerIcons"></i>예약정보</a></li>
                 <li><a href="#"><i class="fa-solid fa-basket-shopping headerIcons"></i>장바구니</a></li>
             </ul>

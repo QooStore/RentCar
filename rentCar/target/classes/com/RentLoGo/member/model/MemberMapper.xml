@@ -28,9 +28,10 @@
 <!-- 로그인(login.jsp) -->
 	<select id="memberLogin" parameterType="memberDTO" resultMap="memberResult">
 	<![CDATA[
-		select "member_id", "member_pw" from "member" 
+		select "member_id", "member_pw", "member_class" from "member" 
 		where "member_id" = #{memberId} and "member_pw" = #{memberPw}
 	]]>
+	
 	</select>
 	
 <!-- 회원탈퇴 (modify.jsp에 회원탈퇴 버튼)-->

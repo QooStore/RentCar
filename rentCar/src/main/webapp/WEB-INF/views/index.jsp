@@ -154,7 +154,6 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-
 		
       <div id="carouselExampleCaptions" class="carousel slide favorites favorites_outside" data-bs-ride="false">
         <div class="carousel-indicators">
@@ -171,7 +170,7 @@
         
           <c:forEach var="car" items="${list }">
 	          <div class="carousel-item active favorites">
-	            <img src="${contextPath }/download?imageFileName=${car.carModel }.png" class="d-block w-100" alt="...">
+	            <img src="/rentCar/resources/images/temp/${car.carModel }.png" class="d-block w-100" alt="...">
 	            <div class="carousel-caption d-none d-md-block">
 	              <h5>${car.carModel }</h5>
 	              <p>${car.carPrice }</p>
@@ -196,7 +195,7 @@
       		<div class="joinFinished"><span>회원 가입을 <br/>완료하셨습니다!!</span></div>
       </div>
      </c:when>
-	</c:choose> 
+	</c:choose>
 
 <!-- 회원정보수정 완료 시 -->   
     <c:choose>

@@ -33,6 +33,7 @@
       ]]>
 	</select>
 	
+	<!-- 상품 리스트 조회 -->
 	<select id="selectCarList" resultMap="allCarResult">
       <![CDATA[
          select r."car_number", c."car_model", c."car_price", c."car_size"
@@ -46,6 +47,15 @@
       <![CDATA[
          select * from "rent_car", "car" 
          where "rent_car"."car_model" = "car"."car_model"
+      ]]>
+	</select>
+	
+<!-- RentCarDTO & CarDTO 삭제 manage -->		
+	<select id="deleteManageRentCar" resultMap="allCarResult">
+      <![CDATA[
+<!--          delete * from "rent_car", "car" 
+         where "rent_car"."car_model" = "car"."car_model"
+         and "rent_car"."car_number" = #{car_number} -->
       ]]>
 	</select>
 

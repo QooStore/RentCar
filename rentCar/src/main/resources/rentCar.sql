@@ -249,6 +249,10 @@ select * from "car";
 select * from "member";
 insert into "member" values ('aaa','aaaa','1','에이','980314','00011112222','aa@naver.com',sysdate);
 insert into "member" values ('bbb','bbbb','1','비비','890704','00077774444','bb@naver.com',sysdate);
+insert into "member" values ('admin','admin','2','admin','890704','00077774444','admin@naver.com',sysdate);
+insert into "member" values ('admin2','admin2','2','admin2','890704','00077774444','admin@naver.com',sysdate);
+insert into "member" values ('human','human','0','human','890704','00077774444','human@naver.com',sysdate);
+insert into "member" values ('human02','human02','1','human02','890704','00077774444','admin@naver.com',sysdate);
 
 -- rentCar에 넣을 시퀀스 추가. 차번호, 주행거리
 create SEQUENCE seq_carNumber
