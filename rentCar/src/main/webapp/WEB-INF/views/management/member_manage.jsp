@@ -1,40 +1,122 @@
 <%@page import="com.RentLoGo.member.model.MemberDTO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>È¸¿ø °ü¸®</title>
+<meta charset="UTF-8">
+<title>íšŒì› ê´€ë¦¬</title>
+<script src="/rentCar/resources/jQuery/jQuery3.6.js"></script>
+<style>
+        .memberManagement .title {
+            text-align: center;
+        }
+        
+        .memberManagement article .title {
+            text-align: center;
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            margin-bottom: 50px;
+            border-top: 1px solid rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(0,0,0,0.3);
+            line-height: 50px;
+        }
+        .memberManagement article .content {
+        	text-align: center;
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            border-bottom: 1px solid rgba(160, 52, 248, 0.8);
+            line-height: 30px;
+        }
+</style>
+ <script>
+        	
+            	function delMember(e) {
+            		
+                let memberId = e.parentElement.parentElement.querySelector('div:first-child').textContent;
+                let xhttp = new XMLHttpRequest();
+                let requestJSON = new Object();
+                requestJSON.memberId = memberId;
+
+                xhttp.open('post', "${contextPath }/managerMember/dropMember.do", true);
+                xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8;');
+                xhttp.responseType = "json";
+                xhttp.send(JSON.stringify(requestJSON));
+
+                xhttp.onreadystatechange = function() {
+	    			if(this.readyState == 4 && this.status == 200) {
+
+                        let article = document.querySelector('.memberManagement article');
+	    				$(article).load('${contextPath}/member/manage.do article');
+	    				
+//                         let jsonMemberList = this.response;
+//                         let string = '';
+//                         let child = document.querySelectorAll('.memberManagement article .content');
+
+//                         for(let j = 0; j < child.length; j++) {
+//                             document.querySelector('.memberManagement article').removeChild(child[j]);
+//                         }
+                        
+// 	                        for(let j = 0; j < jsonMemberList.length; j++) {
+//                       string = '<div class="content">' +
+// 	                                '<div>'+jsonMemberList[j].memberId+'</div>' +
+// 	                                '<div>'+jsonMemberList[j].memberPw+'</div>' +                     
+// 	                                '<div>'+jsonMemberList[j].memberClass+'</div>' +
+// 	                                '<div>'+jsonMemberList[j].memberName+'</div>' +
+// 	                                '<div>'+jsonMemberList[j].memberBirth+'</div>' +
+// 	                                '<div>'+jsonMemberList[j].memberPhone+'</div>' +
+// 	                                '<div>'+jsonMemberList[j].memberEmail+'</div>' +
+// 	                                '<div>'+jsonMemberList[j].memberDate+'</div>' +
+// 	                                '<div><input type="button" class="dropMemberButton" value="ì‚­ì œ"></div>' +
+// 	                            '</div>';
+	                            
+// 	                            article.insertAdjacentHTML('beforeend', string);
+	                            
+// 	                        }
+		    			}
+		    		}
+	
+            	} //click ì´ë²¤íŠ¸ í•¨ìˆ˜ ë
+            	
+            
+    </script>
 </head>
 <body>
-<h1>È¸¿ø °ü¸®</h1>
 
-<table border=1 style="width:800px;align:center">
-    <tr align=center bgcolor="#ffc224">
-        <th>¾ÆÀÌµğ</th>
-        <th>ºñ¹Ğ¹øÈ£</th>
-        <th>È¸¿øºĞ·ù</th>
-        <th>ÀÌ¸§</th>
-        <th>»ı³â¿ùÀÏ</th>
-        <th>ÀüÈ­¹øÈ£</th>
-        <th>ÀÌ¸ŞÀÏ</th>
-        <th>°¡ÀÔÀÏÀÚ</th>
-    </tr>
-    <c:forEach var="member" items="${list }">
- 		<tr align=center>
-        	<th>${member.memberId }</th>
-        	<th>${member.memberPw }</th>
-        	<th>${member.memberClass }</th>
-	        <th>${member.memberName }</th>
-	        <th>${member.memberBirth }</th>
-	        <th>${member.memberPhone }</th>
-	        <th>${member.memberEmail }</th>
-	        <th>${member.memberDate }</th>
-    	</tr>
-     </c:forEach>
-</table>
+	<section class="memberManagement">
+		<div class="title">
+			<h1>íšŒì› ê´€ë¦¬</h1>
+		</div>
+		<article>
+			<div class="title">
+				<div>ì•„ì´ë””</div>
+				<div>ë¹„ë°€ë²ˆí˜¸</div>
+				<div>íšŒì›ë¶„ë¥˜</div>
+				<div>ì´ë¦„</div>
+				<div>ìƒë…„ì›”ì¼</div>
+				<div>ì „í™”ë²ˆí˜¸</div>
+				<div>ì´ë©”ì¼</div>
+				<div>ê°€ì…ì¼ì</div>
+                <div></div>
+            </div>
+            
+            <c:forEach var="member" items="${list }">
+	            <div class="content">
+		            <div>${member.memberId}</div>
+		            <div>${member.memberPw}</div>
+		            <div>${member.memberClass}</div>
+		            <div>${member.memberName}</div>
+		            <div>${member.memberBirth}</div>
+		            <div>${member.memberPhone}</div>
+		            <div>${member.memberEmail}</div>
+		            <div>${member.memberDate}</div>
+		            <div><input type="button" onclick="delMember(this)" value="ì‚­ì œ"/></div>
+	            </div>
+            </c:forEach>
+		</article>
+
+	</section>
 </body>
 </html>
