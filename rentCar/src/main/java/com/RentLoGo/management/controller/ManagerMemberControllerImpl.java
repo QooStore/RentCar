@@ -1,7 +1,14 @@
 package com.RentLoGo.management.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +39,31 @@ public class ManagerMemberControllerImpl implements ManagerMemberController {
 		System.out.println("managerController >>> memberId >>> " + memberId );
 		managerMemberService.dropMember(memberId);
 		List<MemberDTO> list = memberService.selectAllMember();
+		
+		return list;
+	}
+
+	@Override
+	@ResponseBody
+	@RequestMapping(value="/searchMember.do", method=RequestMethod.POST)
+		public List<MemberDTO> searchMember(@RequestBody Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String option = (String) map.get("selected");
+		String value = (String) map.get("inputVal");
+		List<MemberDTO> list = new ArrayList<MemberDTO>();
+		System.out.println("value >>>> " + value);
+		if(value.equals("")) {
+			return null;
+		}
+		
+		switch(option) {
+			case "id": list = managerMemberService.searchId(value);
+				break;
+			case "name": list = managerMemberService.searchName(value);
+				break;
+		}
+		
+		System.out.println("list >>> " + list);
 		
 		return list;
 	}
