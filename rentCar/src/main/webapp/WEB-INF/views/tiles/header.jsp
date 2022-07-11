@@ -51,7 +51,7 @@
                 	
 	                <c:choose>
 	                	<c:when test = "${member.memberId == 'admin' }">
-	                	<li><a href="${contextPath }/management/manager.do">관리자 페이지</a></li>
+	                	<li><a href="${contextPath }/manager/managerForm.do">관리자 페이지</a></li>
 	                	<div class = "login_success_area">
 	                		<span>관리자:${member.memberId }</span>
 	                	</div>

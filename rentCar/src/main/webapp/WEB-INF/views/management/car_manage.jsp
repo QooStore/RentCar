@@ -1,66 +1,131 @@
 <%@page import="com.RentLoGo.rentCar.model.AllCarDTO"%>
 <%@page import="com.RentLoGo.rentCar.model.CarDTO"%>
 <%@page import="com.RentLoGo.rentCar.model.RentCarDTO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>·»ÅÍÄ« °ü¸®</title>
-
-
+<meta charset="UTF-8">
+<title>ë Œí„°ì¹´ ê´€ë¦¬</title>
 <script src="/rentCar/resources/jQuery/jQuery3.6.js"></script>
-<script src="/rentCar/resources/jQuery/jquery.validate.min.js"></script>
-<script>
+<style>
+        .carManagement .title {
+            text-align: center;
+        }
+        
+        .carManagement article .title {
+            text-align: center;
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            margin-bottom: 50px;
+            border-top: 1px solid rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(0,0,0,0.3);
+            line-height: 50px;
+        }
+        .carManagement article .content {
+        	text-align: center;
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            border-bottom: 1px solid rgba(160, 52, 248, 0.8);
+            line-height: 30px;
+        }
+</style>
+ <script>
+        	
+            	function delCar(e) {
+            		
+                let carNumber = e.parentElement.parentElement.querySelector('div:first-child').textContent;
+                let xhttp = new XMLHttpRequest();
+                let requestJSON = new Object();
+                requestJSON.carNumber = carNumber;
 
-$(document).ready(function(){
-	$('.delete_rentCar').click(function() {
-		if(confirm("»èÁ¦ ½Ã, º¹±¸ÇÒ ¼ö ¾ø½À´Ï´Ù. »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")==false){
-			return false;
-		}
-	})
-})
-</script>
+                xhttp.open('post', "${contextPath }/manager/dropCar.do", true);
+                xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8;');
+                xhttp.responseType = "json";
+                xhttp.send(JSON.stringify(requestJSON));
 
+                xhttp.onreadystatechange = function() {
+	    			if(this.readyState == 4 && this.status == 200) {
+
+                        let article = document.querySelector('.carManagement article');
+	    				$(article).load('${contextPath}/manager/manageCar.do article');
+	    				
+//                         let jsonMemberList = this.response;
+//                         let string = '';
+//                         let child = document.querySelectorAll('.memberManagement article .content');
+
+//                         for(let j = 0; j < child.length; j++) {
+//                             document.querySelector('.memberManagement article').removeChild(child[j]);
+//                         }
+                        
+// 	                        for(let j = 0; j < jsonMemberList.length; j++) {
+//                       string = '<div class="content">' +
+// 	                                '<div>'+jsonMemberList[j].memberId+'</div>' +
+// 	                                '<div>'+jsonMemberList[j].memberPw+'</div>' +                     
+// 	                                '<div>'+jsonMemberList[j].memberClass+'</div>' +
+// 	                                '<div>'+jsonMemberList[j].memberName+'</div>' +
+// 	                                '<div>'+jsonMemberList[j].memberBirth+'</div>' +
+// 	                                '<div>'+jsonMemberList[j].memberPhone+'</div>' +
+// 	                                '<div>'+jsonMemberList[j].memberEmail+'</div>' +
+// 	                                '<div>'+jsonMemberList[j].memberDate+'</div>' +
+// 	                                '<div><input type="button" class="dropMemberButton" value="ì‚­ì œ"></div>' +
+// 	                            '</div>';
+	                            
+// 	                            article.insertAdjacentHTML('beforeend', string);
+	                            
+// 	                        }
+		    			}
+		    		}
+	
+            	} //click ì´ë²¤íŠ¸ í•¨ìˆ˜ ë 
+            	
+            	$(document).ready(function(){
+            		$('.delete_Car').click(function() {
+            			if(!confirm("ì‚­ì œ ì‹œ, ë³µêµ¬í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
+            				return false;
+            			}
+            		})
+            	})       
+    </script>
 </head>
 <body>
 
-<h1>·»ÅÍÄ« °ü¸®</h1>
+	<section class="carManagement">
+		<div class="title">
+			<h1>ë Œí„°ì¹´ ê´€ë¦¬</h1>
+		</div>
+		<article>
+			<div class="title">
+				<div>ì°¨ëŸ‰ë²ˆí˜¸</div>
+				<div>ëª¨ë¸</div>
+				<div>ìƒ‰ìƒ</div>
+				<div>í¬ê¸°</div>
+				<div>ì¢…ë¥˜</div>
+				<div>ì£¼í–‰ê±°ë¦¬</div>
+				<div>ì œì¡°ì‚¬</div>
+				<div>ê°€ê²©</div>
+                <div></div>
+            </div>
+            
+            <c:forEach var="allCar" items="${list }">
+	            <div class="content">
+		            <div>${allCar.rentCarDTO.carNumber}</div>
+		            <div>${allCar.carDTO.carModel }</div>
+		            <div>${allCar.rentCarDTO.carColor }</div>
+		            <div>${allCar.carDTO.carSize }</div>
+		            <div>${allCar.carDTO.carType }</div>
+		            <div>${allCar.rentCarDTO.carDistance }</div>
+		            <div>${allCar.carDTO.carMade }</div>
+		            <div>${allCar.carDTO.carPrice }</div>
+		            <div><input type="button" class="modify_Car" onclick="ModCar(this)" value="ìˆ˜ì •"/>
+		            	<input type="button" class="delete_Car" onclick="delCar(this)" value="ì‚­ì œ"/></div>
+	            </div>
+            </c:forEach>
+		</article>
 
-<div>°Ë»ö¾ÆÀÌÄÜ<input type="search"/></div>
-
-<table border=1 style="width:1200px; align:center" class="rentCar_list">
-    <tr align=center bgcolor="#ffc224">
-        <th>Â÷·®¹øÈ£</th>
-        <th>¸ğµ¨</th>
-        <th>»ö»ó</th>
-        <th>Å©±â</th>
-        <th>Á¾·ù</th>
-        <th>ÁÖÇà°Å¸®</th>
-        <th>Á¦Á¶»ç</th>
-        <th>°¡°İ</th>
-        <th></th>
-        <th></th>
-    </tr>
-    
-    <c:forEach var="allCar" items="${list }">
- 		<tr align=center>
-        	<th>${allCar.rentCarDTO.carNumber}</th>
-        	<th>${allCar.carDTO.carModel }</th>
-        	<th>${allCar.rentCarDTO.carColor }</th>
-	        <th>${allCar.carDTO.carSize }</th>
-	        <th>${allCar.carDTO.carType }</th>
-	        <th>${allCar.rentCarDTO.carDistance }</th>
-	        <th>${allCar.carDTO.carMade }</th>
-	        <th>${allCar.carDTO.carPrice }</th>
-	        <th><input type="button" value="¼öÁ¤" onclick="location='¼öÁ¤Æû'"></th>
-	        <th action="${contextPath }/manager/deleteManageRentCar.do" method="post" novalidate class="carDeleteForm">
-	        <input type="button" value="»èÁ¦" class=".delete_rentCar"></th>
-    	</tr>
-     </c:forEach>
-</table>
+	</section>
 </body>
 </html>

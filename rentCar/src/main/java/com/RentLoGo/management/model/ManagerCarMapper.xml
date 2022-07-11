@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="com.RentLoGo.management.model.ManagerCarMapper">
+   
+	<!-- 차량번호로 렌터카삭제-->
+	<delete id="dropCar" parameterType="String">
+      <![CDATA[
+		DELETE 
+  			FROM (SELECT *
+          			FROM "rent_car" r
+             			, "car" c
+         WHERE r."car_model" = c."car_model")
+ 		WHERE "car_number" = #{carNumber}
+      ]]>
+	</delete>
+	
+</mapper>
+   

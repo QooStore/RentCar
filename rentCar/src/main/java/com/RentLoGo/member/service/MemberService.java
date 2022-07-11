@@ -13,6 +13,6 @@ public interface MemberService {
 	public void memberDelete(MemberDTO member) throws Exception;
 	//회원정보수정
 	public void memberModify(MemberDTO member) throws Exception;
-	//회원조회(manage)
+	//회원정보조회
 	public List<MemberDTO> selectAllMember();
 }

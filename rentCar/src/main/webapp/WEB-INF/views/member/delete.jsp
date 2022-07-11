@@ -96,7 +96,7 @@
                 </div>
         
                 <div><input type="submit" class="delete_submit" value="탈퇴하기"></div>
-                <div><input type="button" value="뒤로가기" onclick="location='memberModifyForm.do'"></div>
+                <div><input type="button" value="정보수정" onclick="location='memberModifyForm.do'"></div>
             </div>
             <input type="hidden" name="memberClass" value="1">
         </fieldset>

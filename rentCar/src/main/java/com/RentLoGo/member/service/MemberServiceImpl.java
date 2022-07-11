@@ -33,7 +33,7 @@ public class MemberServiceImpl implements MemberService {
 	public void memberModify(MemberDTO member) throws Exception {
 		memberMapper.memberModify(member);
 	}
-	
+
 	@Override
 	public List<MemberDTO> selectAllMember() {
 
@@ -43,4 +43,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		return list;
 	}
+	
 }
+
+

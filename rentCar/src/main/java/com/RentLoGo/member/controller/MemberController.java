@@ -42,5 +42,4 @@ public interface MemberController {
 	
 	//회원조회(manage)
 	public String select(HttpServletRequest request);
-	public String listMember(HttpServletRequest request);
 }
