@@ -5,15 +5,24 @@
    
 <mapper namespace="com.RentLoGo.management.model.ManagerMemberMapper">
    
+     <resultMap id="memberResult" type="memberDTO">
+		<result property="memberId" column="member_id" />
+		<result property="memberPw" column="member_pw" />
+		<result property="memberClass" column="member_class" />
+		<result property="memberName" column="member_name" />
+		<result property="memberBirth" column="member_birth" />
+		<result property="memberPhone" column="member_phone" />
+		<result property="memberEmail" column="member_email" />
+		<result property="memberDate" column="member_date" />
+	</resultMap>
+   
 	<!-- 아이디로 회원삭제-->
 	<delete id="dropMember" parameterType="String">
       <![CDATA[
-		delete from "member" where "member_id" = #{memberId} 
+		delete from "member" where "member_id" = #{id} 
       ]]>
 	</delete>
 	
-<<<<<<< Updated upstream
-=======
 	<!-- 아이디로 회원검색 -->
 	<select id="searchIdName" parameterType="memberDTO" resultMap="memberResult">
 		<![CDATA[
@@ -38,6 +47,5 @@
 			where "member_id" = #{memberId}
 		]]>
 	</update>
->>>>>>> Stashed changes
 </mapper>
    

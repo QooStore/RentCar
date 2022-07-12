@@ -1,7 +1,11 @@
 package com.RentLoGo.management.model;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.RentLoGo.member.model.MemberDTO;
 
 @Service("managerMemberService")
 public class ManagerMemberServiceImpl implements ManagerMemberService {
@@ -10,12 +14,9 @@ public class ManagerMemberServiceImpl implements ManagerMemberService {
 	ManagerMemberMapper managerMemberMapper;
 	
 	@Override
-	public void dropMember(String id) {
+	public void dropMember(String memberId) {
 
 		System.out.println("ManagerMemberService >>> mapper >> dropMember 실행");
-<<<<<<< Updated upstream
-		managerMemberMapper.dropMember(id);
-=======
 		managerMemberMapper.dropMember(memberId);
 	}
 
@@ -28,7 +29,6 @@ public class ManagerMemberServiceImpl implements ManagerMemberService {
 	@Override
 	public void modifyMember(MemberDTO dto) {
 		managerMemberMapper.modifyMember(dto);
->>>>>>> Stashed changes
 	}
 
 }
