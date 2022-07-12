@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ManagerControllerImpl implements ManagerController {
 
 	@Override
-	@RequestMapping("/managerForm.do")
+	@RequestMapping("/*Form.do")
 	public String managerForm(HttpServletRequest request) {
 		
 		String viewName = (String) request.getAttribute("viewName");

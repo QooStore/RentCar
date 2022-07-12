@@ -45,6 +45,7 @@ public class MemberControllerImpl implements MemberController{
 		return viewName;
 	}
 	
+	//인증완료 후 회원가입 마무리
 	@Override
 	@RequestMapping(value="/memberJoin.do", method=RequestMethod.GET)
 	public String join(HttpSession session, RedirectAttributes redirect) {

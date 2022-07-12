@@ -192,7 +192,6 @@ display: none;
 		    	
 		    	let searchInput = document.querySelector('input[type="search"]');
 		    	let itemList = document.querySelectorAll('.item_wrapper .item_list');
-
 		    	
 		    	searchInput.addEventListener('keyup', keyupHandler);
 		    	

@@ -240,7 +240,6 @@
                 <input type="text" id="inputCode"/>
                 <button type="button" id="buttonResend">재전송</button>
                 <button type="button" id="buttonVerification">인증하기</button>
-                
             </fieldset>
         </form>
     </div>
