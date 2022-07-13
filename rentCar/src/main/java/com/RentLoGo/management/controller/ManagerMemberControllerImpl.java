@@ -1,7 +1,13 @@
 package com.RentLoGo.management.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,5 +40,39 @@ public class ManagerMemberControllerImpl implements ManagerMemberController {
 		List<MemberDTO> list = memberService.selectAllMember();
 		
 		return list;
+	}
+
+	@Override
+	@ResponseBody
+	@RequestMapping(value="/searchMember.do", method=RequestMethod.POST)
+		public List<MemberDTO> searchMember(@RequestBody Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String option = (String) map.get("selected");
+		String value = (String) map.get("inputVal");
+		List<MemberDTO> list = new ArrayList<MemberDTO>();
+		MemberDTO dto = new MemberDTO();
+		
+		switch(option) {
+			case "id": dto.setMemberId(value);
+				break;
+			case "name": dto.setMemberName(value);
+				break;
+		}
+		
+		list = managerMemberService.searchIdName(dto);
+		System.out.println("list >>> " + list);
+		
+		return list;
+	}
+	
+	//수정완료 후 멤버목록으로
+	@Override
+	@RequestMapping(value="/managerMemberModify.do", method=RequestMethod.POST)
+	public String ManagerMemberModify(MemberDTO dto, HttpServletRequest request) {
+		System.out.println("수정 시작 >>>> ");
+		System.out.println("dto >>> " + dto);
+		managerMemberService.modifyMember(dto);
+		
+		return "redirect:/member/manage.do";
 	}
 }

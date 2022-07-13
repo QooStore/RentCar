@@ -95,6 +95,10 @@
         .member_menu, .burger {
             display: none;
         }
+        
+        .hide {
+			display: none;
+		}
 
         @media(max-width: 960px) {
 
@@ -138,9 +142,8 @@
                 visibility: visible;
                 top: 15%;
                 right: 3%;
-            }
+	        }
 
-        }
 
         @media(max-width: 480px) {
             .logo {

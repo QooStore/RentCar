@@ -5,6 +5,26 @@
    
 <mapper namespace="com.RentLoGo.management.model.ManagerCarMapper">
    
+   	<resultMap id="carResult" type="carDTO">
+		<result property="carModel" column="car_model" />
+		<result property="carSize" column="car_size" />
+		<result property="carType" column="car_type" />
+		<result property="carMade" column="car_made" />
+		<result property="carPrice" column="car_price" />
+	</resultMap>
+	
+	<resultMap id="rentCarResult" type="rentCarDTO">
+		<result property="carNumber" column="car_number" />
+		<result property="carModel" column="car_model" />
+		<result property="carColor" column="car_color" />
+		<result property="carDistance" column="car_distance" />
+	</resultMap>
+	
+	<resultMap id="allCarResult" type="allCarDTO">
+		<collection property="carDTO" resultMap="carResult" />
+		<collection property="rentCarDTO" resultMap="rentCarResult" />
+	</resultMap>
+   
 	<!-- 차량번호로 렌터카삭제-->
 	<delete id="dropCar" parameterType="String">
       <![CDATA[
@@ -17,5 +37,16 @@
       ]]>
 	</delete>
 	
+	<!-- 모델명으로 회원검색 -->
+	<select id="searchCarModel" parameterType="AllCarDTO" resultMap="allCarResult">
+		<![CDATA[
+			select * from "rent_car", "car"
+		]]>
+		<where>
+			<if test="carModel != '' and carModel != null">
+				"car_model" like '%'||#{carModel}||'%'
+			</if>
+		</where>
+	</select>
 </mapper>
    

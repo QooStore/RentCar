@@ -12,6 +12,11 @@
 <title>렌터카 관리</title>
 <script src="/rentCar/resources/jQuery/jQuery3.6.js"></script>
 <style>
+		.carSearchBar {
+			width: 500px;
+			margin-left: 65%;
+			margin-bottom: 10px;
+		}
         .carManagement .title {
             text-align: center;
         }
@@ -31,6 +36,75 @@
             grid-template-columns: repeat(9, 1fr);
             border-bottom: 1px solid rgba(160, 52, 248, 0.8);
             line-height: 30px;
+        }
+        
+        #managerModifyCarForm {
+        	position: fixed;
+        	width: 100%;
+        	height: 100%;
+        	top: 0;
+        	left: 0;
+        	background-color: rgba(30, 30, 30, 0.5);
+        }
+        
+        #managerModifyCarForm .title {
+            text-align: center;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            margin-bottom: 50px;
+            border-top: 1px solid rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(0,0,0,0.3);
+            line-height: 50px;
+        }
+        
+        #managerModifyCarForm .content > form {
+            text-align: center;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            border-bottom: 1px solid rgba(160, 52, 248, 0.8);
+            line-height: 30px;
+        }
+        
+        #managerModifyCarForm > div {
+        	background-color: white;
+        	width: 1200px;
+        	height: 300px;
+        	margin: 0 auto;
+        	position: relative;
+        	top: 50%;
+        	transform: translateY(-100%);
+        }
+        
+        #managerModifyCarForm .content input[type="text"]{
+        	width: 120px;
+        	border: none;
+        	background: white;
+        }
+        
+        #managerModifyCarForm .content input[disabled] {
+        	color: silver;
+        }
+        
+        .hiddenIcon {
+        	display: none;
+        	font-size: 30px;
+        	margin-right: 50px;
+        }
+        
+        @media(max-width: 960px) {
+        	.hiddenIcon {
+        		display: block;
+        	}
+        	.carSearchBar form {
+        		display: none;
+        	}
+        }
+        
+        @media(max-width: 780px) {
+        	.hiddenIcon {
+        		text-align: left;
+        		margin-left: 100px;
+        	}
         }
 </style>
  <script>
@@ -53,35 +127,111 @@
                         let article = document.querySelector('.carManagement article');
 	    				$(article).load('${contextPath}/manager/manageCar.do article');
 	    				
-//                         let jsonMemberList = this.response;
-//                         let string = '';
-//                         let child = document.querySelectorAll('.memberManagement article .content');
-
-//                         for(let j = 0; j < child.length; j++) {
-//                             document.querySelector('.memberManagement article').removeChild(child[j]);
-//                         }
-                        
-// 	                        for(let j = 0; j < jsonMemberList.length; j++) {
-//                       string = '<div class="content">' +
-// 	                                '<div>'+jsonMemberList[j].memberId+'</div>' +
-// 	                                '<div>'+jsonMemberList[j].memberPw+'</div>' +                     
-// 	                                '<div>'+jsonMemberList[j].memberClass+'</div>' +
-// 	                                '<div>'+jsonMemberList[j].memberName+'</div>' +
-// 	                                '<div>'+jsonMemberList[j].memberBirth+'</div>' +
-// 	                                '<div>'+jsonMemberList[j].memberPhone+'</div>' +
-// 	                                '<div>'+jsonMemberList[j].memberEmail+'</div>' +
-// 	                                '<div>'+jsonMemberList[j].memberDate+'</div>' +
-// 	                                '<div><input type="button" class="dropMemberButton" value="삭제"></div>' +
-// 	                            '</div>';
-	                            
-// 	                            article.insertAdjacentHTML('beforeend', string);
-	                            
-// 	                        }
 		    			}
 		    		}
 	
-            	} //click 이벤트 함수 끝 
+            	} //delCar 이벤트 함수 끝
             	
+            	$(document).ready(function() {
+            		
+               		$('#searchButton').click(function() {
+               			
+                   		let inputVal = $('.inputSearch').val();
+                   		let selected = $('.selected').val();
+                   		let jsonData = {'inputVal':inputVal, 'selected':selected};
+               			console.log('클릭');
+               			$.ajax({
+               				type: 'POST',
+               				url: '${contextPath}/manager/searchCar.do',
+               				data: JSON.stringify(jsonData),
+               				contentType : "application/json; charset=utf-8",
+               				dataType: 'json',
+               				success: function(jsonCarList) {
+
+    	                        let string = '';
+    	
+    							$('.content').remove();
+    	                        
+    		                        for(let j = 0; j < jsonCarList.length; j++) {
+    	                      string += '<div class="content">' +
+    		                                
+    		                                '<div>'+jsonCarList[j].rentCarDTO.carNumber+'</div>' +
+    		                                '<div><a href="javascript:void(0)" onclick="modifyCar(this)" id="modAnchor">'+jsonCarList[j].carDTO.carModel+'</a></div>' +
+    		                                '<div>'+jsonCarList[j].rentCarDTO.carColor+'</div>' +
+    		                                '<div>'+jsonCarList[j].carDTO.carSize+'</div>' +
+    		                                '<div>'+jsonCarList[j].carDTO.carType+'</div>' +
+    		                                '<div>'+jsonCarList[j].rentCarDTO.carDistance+'</div>' +
+    		                                '<div>'+jsonCarList[j].carDTO.carMade+'</div>' +
+    		                                '<div>'+jsonCarList[j].carDTO.carPrice+'</div>' +
+    		                                '<div><input type="button" onclick="delCar(this)" value="삭제"></div>' +
+    		                            '</div>';
+    		                            
+    		                        }
+    		                        let article = document.querySelector('.carManagement article');
+    		                            article.insertAdjacentHTML('beforeend', string);
+               					
+               				},
+               				error: function() {
+    							location.href='${contextPath}/manager/manageCar.do';
+               				}
+               			}); // ajax 끝
+               		}); //searchButton 클릭 함수 끝
+            	
+               		let modificationForm = document.querySelector('#managerModifyMemberForm');
+    		    	window.addEventListener('click',function(e) {
+    		    		console.log(e.target);
+    		    		(e.target == modificationForm) ? modificationForm.classList.add('hide') : false;
+    		    	});
+    		    	
+    	    	
+    });
+               	
+    function toEnabled() { //수정폼 model disabled 해제
+    	$('#managerModifyCarForm input[name=memberId]').attr('disabled', false);
+    }  	
+
+    function modifyCar(e) { // id로 검색해서 수정폼에 출력
+    	let id = e.childNodes[0].nodeValue;
+    	let jsonData = {'selected':'model', 'inputVal':id};
+    	
+    	$.ajax({
+    		type: 'POST',
+    		url: '${contextPath}/carMember/searchCar.do',
+    		data: JSON.stringify(jsonData),
+    		contentType: "application/json; charset=utf-8",
+    		dataType: 'json',
+    		success: function(jsonCarList) {
+    			let string = '';
+    			
+    			$('#managerModifyCarForm .content').remove();
+    			
+    			string +=      '<div class="content">' +
+    	           '<form action="${contextPath }/managerCar/managerCarModify.do" method="POST" onsubmit="toEnabled()">' +
+    	            		
+    			            '<div><input type="text" name="memberPw" value="'+jsonCarList[0].rentCarDTO.carNumber+'"/></div>' +
+    			            '<div><input type="text" name="memberId" value="'+jsonCarList[0].carDTO.carModel+'" disabled/></div>' +
+    			            '<div><input type="text" name="memberClass" value="'+jsonCarList[0].rentCarDTO.carColor+'"/></div>' +
+    			            '<div><input type="text" name="memberName" value="'+jsonCarList[0].carDTO.carSize+'"/></div>' +
+    			            '<div><input type="text" name="memberBirth" value="'+jsonCarList[0].carDTO.carType+'"/></div>' +
+    			            '<div><input type="text" name="memberPhone" value="'+jsonCarList[0].rentCarDTO.carDistance+'"/></div>' +
+    			            '<div><input type="text" name="memberEmail" value="'+jsonCarList[0].carDTO.carMade+'"/></div>' +
+    			            '<div><input type="text" name="memberEmail" value="'+jsonCarList[0].carDTO.carPrice+'"/></div>' +
+    			            '<div><input type="submit" value="수정완료"/></div>' +
+               			'</form>' +
+    	            '</div>' ;
+               
+               let hiddenForm = document.querySelector('#managerModifyCarForm');
+               let div = document.querySelector('#managerModifyCarForm > div');
+               div.insertAdjacentHTML('beforeend', string);
+               
+               hiddenForm.classList.remove('hide');
+    		},
+    		error: function() {
+    			location.href='${contextPath}/manager/manageCar.do';
+    		}
+    	});
+    }
+               		
             	$(document).ready(function(){
             		$('.delete_Car').click(function() {
             			if(!confirm("삭제 시, 복구할 수 없습니다. 삭제하시겠습니까?")){
@@ -96,6 +246,16 @@
 	<section class="carManagement">
 		<div class="title">
 			<h1>렌터카 관리</h1>
+			<div class="carSearchBar">
+				<div class="hiddenIcon"><i class="fa-solid fa-magnifying-glass"></i></div>
+				<form action="" method="post" id="carSearchForm">
+					<input type="text" class="inputSearch" name="searchInput"/>
+					<select name="searchOption" class="selected">
+						<option value="model">모델명</option>
+					</select>
+					<input type="button" value="검색" id="searchButton"/>
+				</form>
+			</div>
 		</div>
 		<article>
 			<div class="title">

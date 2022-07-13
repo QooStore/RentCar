@@ -34,7 +34,7 @@
             <ul>
                 <li><a href="${contextPath }/member/manage.do"><i class="fa fa-address-card" aria-hidden="true"></i>회원관리</a></li>
                 <li><a href="#"><i class="fa fa-list-alt" aria-hidden="true"></i>예약관리</a></li>
-                <li><a href="#"><i class="fa fa-car" aria-hidden="true"></i>렌터카관리</a></li>
+                <li><a href="${contextPath }/manager/manageCar.do"><i class="fa fa-car" aria-hidden="true"></i>렌터카관리</a></li>
             </ul>
         </div>
     </header>

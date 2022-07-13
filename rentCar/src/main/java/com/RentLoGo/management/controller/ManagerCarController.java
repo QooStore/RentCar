@@ -1,14 +1,19 @@
 package com.RentLoGo.management.controller;
 
+import java.io.IOException;
+
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.RentLoGo.member.model.MemberDTO;
 import com.RentLoGo.rentCar.model.AllCarDTO;
+import com.RentLoGo.rentCar.model.CarDTO;
+import com.RentLoGo.rentCar.model.RentCarDTO;
 
 public interface ManagerCarController {
 
@@ -18,4 +23,7 @@ public interface ManagerCarController {
 	
 	//렌터카삭제(manage)
 	List<AllCarDTO> dropCar(Map<String, Object> number);
+	
+	//검색
+	List<AllCarDTO> searchCar(Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 }

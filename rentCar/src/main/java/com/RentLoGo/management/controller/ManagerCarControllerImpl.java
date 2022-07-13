@@ -1,9 +1,14 @@
 package com.RentLoGo.management.controller;
 
+import java.io.IOException;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +20,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.RentLoGo.management.model.ManagerCarService;
 import com.RentLoGo.rentCar.model.AllCarDTO;
+import com.RentLoGo.rentCar.model.CarDTO;
+import com.RentLoGo.rentCar.model.RentCarDTO;
 import com.RentLoGo.rentCar.model.CarService;
 
 @Controller
@@ -61,6 +68,30 @@ public class ManagerCarControllerImpl implements ManagerCarController {
 		System.out.println("managerController >>> carNumber >>> " + carNumber );
 		managerCarService.dropCar(carNumber);
 		List<AllCarDTO> list = carService.selectCarList();
+		
+		return list;
+	}
+	
+	//검색
+	@Override
+	@ResponseBody
+	@RequestMapping(value="/searchCar.do", method=RequestMethod.POST)
+		public List<AllCarDTO> searchCar(@RequestBody Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String option = (String) map.get("selected");
+		String value = (String) map.get("inputVal");
+		List<AllCarDTO> list = new ArrayList<AllCarDTO>();
+		AllCarDTO dto = new AllCarDTO();
+		List<RentCarDTO> rentList = new ArrayList<RentCarDTO>();
+		RentCarDTO rentDto = new RentCarDTO();
+		
+		switch(option) {
+		case "model": rentDto.setCarModel(value);
+			break;
+	}
+		
+		list = managerCarService.searchCarModel(dto);
+		System.out.println("list >>> " + list);
 		
 		return list;
 	}
