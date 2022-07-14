@@ -17,13 +17,13 @@ import com.RentLoGo.rentCar.model.RentCarDTO;
 
 public interface ManagerCarController {
 
-	//렌터카조회(manage)
+//렌터카조회(manage)
 	public String select(HttpServletRequest request);
 	public String listManageCar(HttpServletRequest request);
 	
-	//렌터카삭제(manage)
+//렌터카삭제(manage)
 	List<AllCarDTO> dropCar(Map<String, Object> number);
 	
-	//검색
+//검색
 	List<AllCarDTO> searchCar(Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 }

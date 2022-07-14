@@ -3,6 +3,7 @@ package com.RentLoGo.management.controller;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +34,7 @@ public class ManagerCarControllerImpl implements ManagerCarController {
 	@Autowired
 	CarService carService;
 	
-	//렌터카조회(manage)
+//렌터카조회(manage)
 	@Override
 	@RequestMapping("/manageCar.do")
 	public String select(HttpServletRequest request) {
@@ -58,7 +59,7 @@ public class ManagerCarControllerImpl implements ManagerCarController {
 	}
 	
 	
-	//렌터카삭제(manage)
+//렌터카삭제(manage)
 	@Override
 	@RequestMapping(value="/dropCar.do", method=RequestMethod.POST)
 	@ResponseBody
@@ -67,12 +68,12 @@ public class ManagerCarControllerImpl implements ManagerCarController {
 		String carNumber = (String) number.get("carNumber");
 		System.out.println("managerController >>> carNumber >>> " + carNumber );
 		managerCarService.dropCar(carNumber);
-//		List<AllCarDTO> list = carService.selectCarList();
-		List<AllCarDTO> list = new ArrayList<>();
+		List<AllCarDTO> list = carService.selectManageRentCar();
+		
 		return list;
 	}
 	
-	//검색
+//검색
 	@Override
 	@ResponseBody
 	@RequestMapping(value="/searchCar.do", method=RequestMethod.POST)
@@ -80,17 +81,16 @@ public class ManagerCarControllerImpl implements ManagerCarController {
 
 		String option = (String) map.get("selected");
 		String value = (String) map.get("inputVal");
+		
 		List<AllCarDTO> list = new ArrayList<AllCarDTO>();
-		AllCarDTO dto = new AllCarDTO();
-		List<RentCarDTO> rentList = new ArrayList<RentCarDTO>();
-		RentCarDTO rentDto = new RentCarDTO();
 		
 		switch(option) {
-		case "model": rentDto.setCarModel(value);
+		case "number": map.put("carNumber", value);
+			break;
+		case "model": map.put("carModel", value);
 			break;
 	}
-		
-		list = managerCarService.searchCarModel(dto);
+		list = managerCarService.searchCarNumberModel(map);
 		System.out.println("list >>> " + list);
 		
 		return list;

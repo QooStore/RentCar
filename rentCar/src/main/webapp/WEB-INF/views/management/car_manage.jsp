@@ -155,8 +155,8 @@
     		                        for(let j = 0; j < jsonCarList.length; j++) {
     	                      string += '<div class="content">' +
     		                                
-    		                                '<div>'+jsonCarList[j].rentCarDTO.carNumber+'</div>' +
-    		                                '<div><a href="javascript:void(0)" onclick="modifyCar(this)" id="modAnchor">'+jsonCarList[j].carDTO.carModel+'</a></div>' +
+    		                                '<div><a href="javascript:void(0)" onclick="modifyCar(this)" id="modAnchor">'+jsonCarList[j].rentCarDTO.carNumber+'</a></div>' +
+    		                                '<div>'+jsonCarList[j].carDTO.carModel+'</div>' +
     		                                '<div>'+jsonCarList[j].rentCarDTO.carColor+'</div>' +
     		                                '<div>'+jsonCarList[j].carDTO.carSize+'</div>' +
     		                                '<div>'+jsonCarList[j].carDTO.carType+'</div>' +
@@ -251,6 +251,7 @@
 				<form action="" method="post" id="carSearchForm">
 					<input type="text" class="inputSearch" name="searchInput"/>
 					<select name="searchOption" class="selected">
+						<option value="number">차량번호</option>
 						<option value="model">모델명</option>
 					</select>
 					<input type="button" value="검색" id="searchButton"/>
@@ -285,7 +286,37 @@
 	            </div>
             </c:forEach>
 		</article>
-
+		<!-- 수정폼 -->
+		<section id="managerModifyCarForm"  class="hide">
+			<div>
+				<div class="title">
+					<div>차량번호</div>
+					<div>모델</div>
+					<div>색상</div>
+					<div>크기</div>
+					<div>종류</div>
+					<div>주행거리</div>
+					<div>제조사</div>
+					<div>가격</div>
+	                <div></div>
+	            </div>
+	            
+	            <div class="content">
+		            <form action="${contextPath }/managerCar/managerCarModify.do" method="POST" onsubmit="toEnabled()">
+		            		<div><input type="text" name="carNumber" disabled/></div>
+				            <div><input type="text" name="carModel"/></div>
+				            <div><input type="text" name="carColor"/></div>
+				            <div><input type="text" name="carSize"/></div>
+				            <div><input type="text" name="carType"/></div>
+				            <div><input type="text" name="carDistance"/></div>
+				            <div><input type="text" name="carMade"/></div>
+				            <div><input type="text" name="carPrice"/></div>
+				            <div><input type="submit" value="수정완료"/></div>
+	           		</form>
+	            </div>
+            </div>
+		</section>
 	</section>
+
 </body>
 </html>

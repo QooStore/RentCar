@@ -1,6 +1,6 @@
 package com.RentLoGo.rentCar.model;
 
-import java.util.List;
+import java.util.List; 
 import java.util.Map;
 
 public interface CarMapper {
@@ -9,7 +9,6 @@ public interface CarMapper {
 	
 	//manageCar
 	public List<AllCarDTO> selectManageRentCar();
-	public void deleteManageRentCar(AllCarDTO allCar);
 	
 	public List<AllCarDTO> selectCarList(Map index);
 }

@@ -1,9 +1,9 @@
 package com.RentLoGo.management.model;
 
 import java.util.List;
+import java.util.Map;
 
-
-import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.RentLoGo.rentCar.model.AllCarDTO;
@@ -13,7 +13,7 @@ public class ManagerCarServiceImpl implements ManagerCarService {
 
 	@Autowired
 	ManagerCarMapper managerCarMapper;
-	
+//삭제
 	@Override
 	public void dropCar(String number) {
 
@@ -21,10 +21,10 @@ public class ManagerCarServiceImpl implements ManagerCarService {
 		managerCarMapper.dropCar(number);
 	}
 	
-	//검색
+//검색
 	@Override
-	public List<AllCarDTO> searchCarModel(AllCarDTO dto) {
-		List<AllCarDTO> list = managerCarMapper.searchCarModel(dto);
+	public List<AllCarDTO> searchCarNumberModel(Map<String, Object> map) {
+		List<AllCarDTO> list = managerCarMapper.searchCarNumberModel(map);
 		return list;
 	}
 

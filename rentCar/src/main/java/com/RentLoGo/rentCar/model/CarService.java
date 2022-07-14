@@ -9,7 +9,6 @@ public interface CarService {
 	
 	/* manage rentCar*/
 	public List<AllCarDTO> selectManageRentCar();
-	public void  deleteManageRentCar(AllCarDTO allCar) throws Exception;
 	
 	// 상품리스트
 	public List<AllCarDTO> selectCarList(Map index);

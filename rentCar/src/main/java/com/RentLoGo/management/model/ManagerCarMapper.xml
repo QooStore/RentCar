@@ -37,14 +37,17 @@
       ]]>
 	</delete>
 	
-	<!-- 모델명으로 회원검색 -->
-	<select id="searchCarModel" parameterType="AllCarDTO" resultMap="allCarResult">
+	<!-- 렌터카 검색 -->
+	<select id="searchCarNumberModel" parameterType="java.util.Map" resultMap="allCarResult">
 		<![CDATA[
 			select * from "rent_car", "car"
 		]]>
 		<where>
+			<if test="carNumber != '' and carNumber != null">
+				"rent_car"."car_number" like '%'||#{carNumber}||'%'
+			</if>
 			<if test="carModel != '' and carModel != null">
-				"car_model" like '%'||#{carModel}||'%'
+				and "rent_car"."car_model" like '%'||#{carModel}||'%'
 			</if>
 		</where>
 	</select>
