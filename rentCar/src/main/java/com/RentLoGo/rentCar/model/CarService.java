@@ -1,6 +1,7 @@
 package com.RentLoGo.rentCar.model;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CarService {
 
@@ -11,5 +12,5 @@ public interface CarService {
 	public void  deleteManageRentCar(AllCarDTO allCar) throws Exception;
 	
 	// 상품리스트
-	public List<AllCarDTO> selectCarList();
+	public List<AllCarDTO> selectCarList(Map index);
 }

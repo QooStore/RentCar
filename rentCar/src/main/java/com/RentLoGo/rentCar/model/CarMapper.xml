@@ -34,11 +34,16 @@
 	</select>
 	
 	<!-- 상품 리스트 조회 -->
-	<select id="selectCarList" resultMap="allCarResult">
+   	<select id="selectCarList" parameterType="java.util.Map" resultMap="allCarResult">
       <![CDATA[
-         select r."car_number", c."car_model", c."car_price", c."car_size"
-         from "car" c, "rent_car" r
-         where c."car_model" = r."car_model"
+ 		select *
+		from (
+			select row_number() over(order by r."car_number") as row_num, r."car_number", c."car_model", c."car_price", c."car_size"
+			from "car" c, "rent_car" r
+			where c."car_model" = r."car_model"
+			order by r."car_number"
+		)
+		where row_num >= #{startIndex} and row_num < #{endIndex}
       ]]>
    </select>
 	

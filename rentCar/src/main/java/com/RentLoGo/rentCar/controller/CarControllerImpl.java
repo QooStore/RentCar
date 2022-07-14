@@ -7,8 +7,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -51,12 +52,12 @@ public class CarControllerImpl implements CarController {
 	@Override
 	@RequestMapping("/ajaxCars.do")
 	@ResponseBody
-	public Map<String, List<AllCarDTO>> ajaxCars() {
-		
-		List<AllCarDTO> list = carService.selectCarList();
-		
+	public Map<String, List<AllCarDTO>> ajaxCars(@RequestBody Map<String, Object> index) {
+		System.out.println("index >>> " + index);
+		List<AllCarDTO> list = carService.selectCarList(index);
 		Map<String, List<AllCarDTO>> map = new HashMap<>();
 		map.put("cars", list);
+		System.out.println("car controller list >>> " + list);
 		
 		return map;
 	}

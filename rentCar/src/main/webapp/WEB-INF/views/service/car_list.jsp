@@ -110,7 +110,7 @@ display: none;
 
     	var countPrint = 4;
     	var startIndex = 1;
-    	var endIndex = startIndex + countPrint -1;
+    	var endIndex = startIndex + countPrint;
     	var docElement = document.documentElement;
     	var initialHeight = docElement.scrollHeight;
     	
@@ -121,7 +121,7 @@ display: none;
             let currentHeight = docElement.scrollHeight;
 
             if(initialHeight != currentHeight) clearInterval(setInt);
-    	}, 100);
+    	}, 500);
 
 
   let timer;
@@ -144,9 +144,15 @@ display: none;
     function listCars() {
     		
 	    	let xhttp = new XMLHttpRequest();
-	    	xhttp.open('get', "${contextPath}/car/ajaxCars.do", true);
+	    	let jsonData = new Object();
+	    	jsonData.startIndex = startIndex;
+	    	jsonData.endIndex = endIndex;
+	    	
+	    	xhttp.open('post', "${contextPath}/car/ajaxCars.do", true);
+	    	xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8;');
 	    	xhttp.responseType = "json";
-	    	xhttp.send();
+	    	console.log(jsonData);
+	    	xhttp.send(JSON.stringify(jsonData));
 	    	
 	    	xhttp.onreadystatechange = function() {
 				if(this.readyState == 4 && this.status == 200) {
@@ -154,8 +160,9 @@ display: none;
 					let jsonCars = this.response;
 					let arrayCars = jsonCars.cars;
 					let string = '';
+					console.log(arrayCars);
 					
-					for(var i = startIndex-1; i < endIndex; i++) {
+					for(var i = 0; i < countPrint; i++) {
 						
 						if(i < arrayCars.length) {
 					       string = '<li class="item_list">' +
@@ -169,14 +176,14 @@ display: none;
 				                    '</figcaption>' +
 				                '</figure>' +
 				            '</li>';
-						
 					       document.querySelector('.item_wrapper').innerHTML += string;
 						} //if 끝
 						
+	                startIndex++;
+	                endIndex++;
 					}//for 끝
-	                startIndex += countPrint;
-	                endIndex += countPrint;
 				}
+	    	
 				
 		    	//검색
 		    	let keywords = document.querySelectorAll('.item_list .keyword');
@@ -280,7 +287,6 @@ display: none;
 		    		}
 				}		            
 	
-		    	
 			}//ajax state 끝
 	    	
     	} //listCars 끝
