@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>공지사항 및 게시판</title>
 </head>
 <body>
-
+<h1>공지사항 및 게시판</h1>
 </body>
 </html>

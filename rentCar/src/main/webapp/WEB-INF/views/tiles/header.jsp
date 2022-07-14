@@ -25,7 +25,7 @@
                 <li><a href="#">이용안내</a></li>
             </ul>
         </div>
-        <div><a href="#">공지사항</a></div>
+        <div><a href="${contextPath }/board/board.do">공지사항</a></div>
         <div><a href="#">고객센터</a></div>
         <div class="list">
             <input type="checkbox" class="member_menu" id="member_menu" />

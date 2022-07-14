@@ -8,5 +8,6 @@
 		<typeAlias type="com.RentLoGo.member.model.MemberDTO" alias="memberDTO"/>
 		<typeAlias type="com.RentLoGo.rentCar.model.RentCarDTO" alias="rentCarDTO"/>
 		<typeAlias type="com.RentLoGo.rentCar.model.AllCarDTO" alias="allCarDTO"/>
+		<typeAlias type="com.RentLoGo.board.model.BoardDTO" alias="boardDTO"/>
 	</typeAliases>
 </configuration>
