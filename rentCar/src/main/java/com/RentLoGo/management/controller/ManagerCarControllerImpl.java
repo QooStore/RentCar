@@ -67,8 +67,8 @@ public class ManagerCarControllerImpl implements ManagerCarController {
 		String carNumber = (String) number.get("carNumber");
 		System.out.println("managerController >>> carNumber >>> " + carNumber );
 		managerCarService.dropCar(carNumber);
-		List<AllCarDTO> list = carService.selectCarList();
-		
+//		List<AllCarDTO> list = carService.selectCarList();
+		List<AllCarDTO> list = new ArrayList<>();
 		return list;
 	}
 	
