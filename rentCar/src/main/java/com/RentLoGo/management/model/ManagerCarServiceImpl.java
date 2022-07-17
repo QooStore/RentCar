@@ -1,6 +1,6 @@
 package com.RentLoGo.management.model;
 
-import java.util.List;
+import java.util.List; 
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,4 +28,10 @@ public class ManagerCarServiceImpl implements ManagerCarService {
 		return list;
 	}
 
+//수정
+	@Override
+	public List<AllCarDTO> modifyCar(Map<String, Object> map) {
+		List<AllCarDTO> list = managerCarMapper.modifyCar(map);
+		return list;
+	}
 }

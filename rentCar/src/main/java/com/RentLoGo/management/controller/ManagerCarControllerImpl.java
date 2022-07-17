@@ -1,6 +1,6 @@
 package com.RentLoGo.management.controller;
 
-import java.io.IOException;
+import java.io.IOException; 
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -94,5 +94,19 @@ public class ManagerCarControllerImpl implements ManagerCarController {
 		System.out.println("list >>> " + list);
 		
 		return list;
+	}
+	
+//수정
+	//수정완료 후 멤버목록으로
+	@Override
+	@RequestMapping(value="/managerCarModify.do", method=RequestMethod.POST)
+	public List<AllCarDTO> ManagerCarModify(Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<AllCarDTO> list = new ArrayList<AllCarDTO>();
+		
+		list = managerCarService.modifyCar(map);
+		System.out.println("list >>> " + list);
+		
+		return list;
+		
 	}
 }

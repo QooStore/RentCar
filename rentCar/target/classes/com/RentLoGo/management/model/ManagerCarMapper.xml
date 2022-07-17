@@ -30,9 +30,8 @@
       <![CDATA[
 		DELETE 
   			FROM (SELECT *
-          			FROM "rent_car" r
-             			, "car" c
-         WHERE r."car_model" = c."car_model")
+          			FROM "rent_car" r, "car" c
+         			WHERE r."car_model" = c."car_model")
  		WHERE "car_number" = #{carNumber}
       ]]>
 	</delete>
@@ -40,16 +39,33 @@
 	<!-- 렌터카 검색 -->
 	<select id="searchCarNumberModel" parameterType="java.util.Map" resultMap="allCarResult">
 		<![CDATA[
-			select * from "rent_car", "car"
+			select * from "rent_car" r, "car" c
 		]]>
 		<where>
+			r."car_model" = c."car_model"
 			<if test="carNumber != '' and carNumber != null">
-				"rent_car"."car_number" like '%'||#{carNumber}||'%'
+				and r."car_number" like '%'||#{carNumber}||'%'
 			</if>
 			<if test="carModel != '' and carModel != null">
-				and "rent_car"."car_model" like '%'||#{carModel}||'%'
+				and r."car_model" like '%'||#{carModel}||'%'
 			</if>
 		</where>
+		<![CDATA[
+			order by r."car_number"    			
+		]]>
 	</select>
+	
+	<!-- 렌터카 검색 -->
+		<update id="modifyCar" parameterType="java.util.Map">
+		<![CDATA[
+			update "rent_car" r, "car" c
+			set r."car_number" = #{carNumber}, r."car_model" = #{carModel}, 
+				r."car_color" = #{carColor}, r."car_distance" = #{carDistance}, 
+				c."car_model" = #{carModel}, c."car_size" = #{carSize},
+				c."car_type" = #{carType}, c."car_made" = #{carMade},
+				c."car_price" = #{carPrice}
+			where r."car_model" = c."car_model"
+		]]>
+	</update>
 </mapper>
    
