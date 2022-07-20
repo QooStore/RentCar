@@ -23,7 +23,7 @@
       ]]>
 	</delete>
 	
-	<!-- 아이디로 회원검색 -->
+	<!-- 아이디, 이름으로 회원검색 -->
 	<select id="searchIdName" parameterType="memberDTO" resultMap="memberResult">
 		<![CDATA[
 			select * from "member"

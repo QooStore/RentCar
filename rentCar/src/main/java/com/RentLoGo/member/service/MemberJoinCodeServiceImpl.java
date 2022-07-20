@@ -41,7 +41,6 @@ public class MemberJoinCodeServiceImpl implements MemberJoinCodeService {
 		cookie.setCookieName("randomCode");
 		cookie.addCookie(response, randomCode);
 		
-		
 		System.out.println("cookie >>> " + cookie);
 		System.out.println("쿠키 생성 완료!!!!");
 	}

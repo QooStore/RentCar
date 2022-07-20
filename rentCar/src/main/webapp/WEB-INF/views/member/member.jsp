@@ -99,6 +99,7 @@
         });
     </script>
     
+<!-- 상태 체크 후 인증 폼 호출  -->
 <c:choose>
 	<c:when test="${status == 'verification' }">
 	    <script>
@@ -108,10 +109,11 @@
 	    	
 	    	document.querySelector('.verification').style.visibility = 'visible';
 	    	
-	    	window.addEventListener('click', function(e) {
+	    	window.addEventListener('click', function(e) { // 폼 외부 클릭 시 폼 닫기
 	    		e.target == verification ?	location.href="${contextPath}/member/memberForm.do": false;
 	    	});
 	    	
+	    	// 인증하기 버튼 클릭하면 인증번호 비교 시작
 	    	document.querySelector('#buttonVerification').addEventListener('click', function() {
 
 	    		let xhttp = new XMLHttpRequest();
@@ -120,7 +122,7 @@
 	    		requestJSON.code = codeValue; //json형식으로 값을 넣어줌
 	    		xhttp.open('post', "${contextPath}/member/checkCode.do", true);
 	    		
-	            //HTTP 요청 헤더 설정
+	            // HTTP 요청 헤더 설정
 	            xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8;');
 	            
 	    		xhttp.send(JSON.stringify(requestJSON));
@@ -143,7 +145,7 @@
 	    	let min = '';
 	    	let sec = '';
 	    	
-    	let setTime = setInterval(function() {
+    	let setTime = setInterval(function() { // 인증 유효시간 표시 메서드
     		
     		min = parseInt(time/60);
     		sec = time%60;
@@ -155,7 +157,7 @@
     		
     	}, 1000);
 	    	
-	    	document.querySelector('#buttonResend').addEventListener('click', function() {
+	    	document.querySelector('#buttonResend').addEventListener('click', function() { // 인증번호 재전송
 	    		let xhttp = new XMLHttpRequest();
 	    		xhttp.open('post', "${contextPath}/member/resendCode.do", true);
 	    		xhttp.send();

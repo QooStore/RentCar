@@ -139,10 +139,10 @@
             	
 $(document).ready(function() {
             		
-           		$('#searchButton').click(function() {
+           		$('#searchButton').click(function() { // 검색버튼 클릭 시 회원 검색
            			
                		let inputVal = $('.inputSearch').val();
-               		let selected = $('.selected').val();
+               		let selected = $('.selected').val(); // 아이디로 검색, 이름으로 검색 셀렉트 박스 선택 값
                		let jsonData = {'inputVal':inputVal, 'selected':selected};
            			console.log('클릭');
            			$.ajax({
