@@ -1,8 +1,15 @@
 package com.RentLoGo.member.controller;
 
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +25,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.RentLoGo.member.model.MemberDTO;
@@ -258,6 +267,72 @@ public class MemberControllerImpl implements MemberController{
 		return result;
 	}
 
+	// 카카오 인가코드 받기
+	@RequestMapping("/kakaoAuth.do")
+	@ResponseBody
+	public String getKakaoAuth(HttpServletRequest request) { 
+	
+		String url = "https://kauth.kakao.com/oauth/authorize?client_id=d9c1879529faae92016aee6cc169aea3&redirect_uri=http://localhost:8080/rentCar/member/auth_kakao.do&response_type=code";
+		return url;
+	}
+	
+	// 카카오 연동정보 조회
+	@RequestMapping("/auth_kakao.do")
+	public String authKakao(@RequestParam(value = "code", required = false) String code, HttpServletRequest request) {
+		
+		System.out.println("getAccessToken 실행 >>> ");
+		String accessToken = getAccessToken(code);
+		
+		
+		return "redirect:/car/indexForm.do";
+	}
 
+	//토큰 받기
+	private String getAccessToken(String code) {
 
+		String accessToken = "";
+		String refreshToken = "";
+		String requestUrl = "https://kauth.kakao.com/oauth/token";
+		
+		try {
+			URL url = new URL(requestUrl); // url 객체 얻기
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection(); // connection 객체 얻기
+			conn.setRequestMethod("POST"); // 서버에 요청 방식 설정
+			conn.setDoOutput(true); // 서버에 데이터를 보내기 위해 true로 설정
+			
+			PrintWriter pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()))); // 출력 스트림 가져오기
+			StringBuffer sb = new StringBuffer();
+			sb.append("grant_type=authorization_code"); // 요청 파라미터 설정
+			sb.append("&client_id=d9c1879529faae92016aee6cc169aea3");
+			sb.append("&redirect_uri=http://localhost:8080/rentCar/member/auth_kakao.do");
+			sb.append("&code=" + code);
+			
+			pw.print(((sb.toString())));
+			pw.flush();
+			sb.delete(0, sb.length());
+			
+			// 결과 코드가 200이라면 성공
+			int responseCode = conn.getResponseCode();
+			System.out.println("responseCode >>> " + responseCode);
+			
+			// 요청으로 얻은 JSON타입의 Response 메시지 읽어오기
+			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			String line = "";
+			
+			while ((line = br.readLine()) != null) {
+				sb.append(line);
+			}
+			System.out.println("message >>> " + sb.toString());
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 }

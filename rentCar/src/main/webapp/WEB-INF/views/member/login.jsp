@@ -64,6 +64,26 @@ window.onload = function() {
 	}); // 카카오로그인 버튼 클릭 이벤트 끝
 	*/
 	
+	kakaoLoginButton.addEventListener('click', function() {
+		
+		let xhttp = new XMLHttpRequest();
+		
+		xhttp.open('get', "${contextPath}/member/kakaoAuth.do", true);
+		xhttp.responseType = "text";
+		xhttp.send();
+		
+		xhttp.onreadystatechange = function() {
+			
+			if(this.readyState == 4 && this.status == 200) {
+				let url = this.response;
+				location.href = url;
+
+			}
+			
+		}
+		
+	});
+	
 }
 
 </script>
