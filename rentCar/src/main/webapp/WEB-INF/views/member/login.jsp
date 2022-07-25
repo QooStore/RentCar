@@ -77,24 +77,13 @@ window.onload = function() {
 			if(this.readyState == 4 && this.status == 200) {
 				let url = this.response;
 				location.href = url;
-
 			}
 			
 		}
 		
 	});
 	
-	  var userInfo = '${userInfo}';
-	
-      if(userInfo != ""){
-    	  var data = JSON.parse(userInfo);
-			console.log(data.email);
-			console.log(data.nickname);
-			console.log(data.id);
-      }
-	
 }
-
 
 </script>
 </head>

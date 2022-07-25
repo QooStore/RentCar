@@ -60,7 +60,6 @@ public class ManagerMemberControllerImpl implements ManagerMemberController {
 		}
 		
 		list = managerMemberService.searchIdName(dto);
-		System.out.println("list >>> " + list);
 		
 		return list;
 	}

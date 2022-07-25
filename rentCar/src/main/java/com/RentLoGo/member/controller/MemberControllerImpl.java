@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +24,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,10 +31,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.RentLoGo.management.model.ManagerMemberService;
 import com.RentLoGo.member.model.MemberDTO;
 import com.RentLoGo.member.service.MemberJoinCodeService;
 import com.RentLoGo.member.service.MemberService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
@@ -43,7 +43,8 @@ public class MemberControllerImpl implements MemberController{
 
 	@Autowired
 	private MemberService memberService;
-	
+	@Autowired
+	ManagerMemberService managerMemberService;
 	@Autowired
 	private MemberJoinCodeService codeService;
 	
@@ -65,7 +66,7 @@ public class MemberControllerImpl implements MemberController{
 		try {
 			
 			MemberDTO member = (MemberDTO) session.getAttribute("memberInfo");
-			
+			System.out.println("회원가입 member >>> " + member);
 			memberService.memberJoin(member);
 			redirect.addAttribute("joinResult", "finished");
 			
@@ -100,29 +101,6 @@ public class MemberControllerImpl implements MemberController{
 		HttpSession session = request.getSession();
 		MemberDTO mto = null;
 		mto = memberService.memberLogin(member);
-		
-		System.out.println("데이터 >>>>>>>>> " + mto);
-//		String id = member.getMemberId();
-//		String pw = member.getMemberPw();
-//		
-//		System.out.println("아이디 : >>> " + id);
-//		System.out.println("비번 : >>> " + pw);
-		
-		List<MemberDTO> list = memberService.selectAllMember();
-		System.out.println("all list >>>>> " + list);
-		
-//		
-//		if(list.contains(id)) {
-//			session.setAttribute("member", member);
-//			System.out.println("로그인 성공 ~~~~~");
-//			return "redirect:/car/indexForm.do";
-//		}else
-//		{
-//			int result = 0;
-//			rttr.addFlashAttribute("result",result);
-//			System.out.println("로그인 실패 >>>>>>>>>>>>>>>> 비번 또는 아이디 틀림");
-//			return "redirect:/member/login.do";
-//		}
 		
 		if(mto == null) {
 			int result = 0;
@@ -282,23 +260,26 @@ public class MemberControllerImpl implements MemberController{
 	
 	// 카카오 연동정보 조회
 	@RequestMapping("/auth_kakao.do")
-	public String authKakao(@RequestParam(value = "code", required = false) String code, HttpServletRequest request) {
+	public void authKakao(@RequestParam(value = "code", required = false) String code, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		ObjectMapper mapper = new ObjectMapper();
 		
 		String accessToken = getAccessToken(code);
 		HashMap<String, Object> userInfo = getUserInfo(accessToken);
 
-		try {
-			String kakaoInfo = mapper.writeValueAsString(userInfo); // userInfo 맵을 json형식으로 직렬화
-			request.setAttribute("userInfo", kakaoInfo); // json 문자열 바인딩
-			System.out.println("auth userInfo >>>> " + kakaoInfo);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			String kakaoInfo = mapper.writeValueAsString(userInfo); // userInfo 맵을 json형식으로 직렬화
+//			request.setAttribute("userInfo", kakaoInfo); // json 문자열 바인딩
+//			System.out.println("auth userInfo >>>> " + kakaoInfo);
+//		} catch (JsonProcessingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
-		return "login";
+		request.setAttribute("userInfo", userInfo);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/member/kakaoLogin.do");
+		dispatcher.forward(request, response);
 	}
 
 	// accessToken으로 유저 정보 받아오기
@@ -402,6 +383,46 @@ public class MemberControllerImpl implements MemberController{
 		}
 		
 		return accessToken;
+	}
+	
+	// 카카오 로그인 시 회원등록 돼있으면 로그인 진행
+	// 없으면 회원가입 진행
+	@RequestMapping("/kakaoLogin.do")
+	public void kakaoLogin(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		HashMap<String, Object> userInfo = (HashMap<String, Object>) request.getAttribute("userInfo");
+		String memberId = (String) userInfo.get("id");
+		String memberName = (String) userInfo.get("nickname");
+		String memberEmail = (String) userInfo.get("email");
+				
+		MemberDTO dto = new MemberDTO();
+		dto.setMemberId(memberId);
+		dto.setMemberName(memberName);
+		dto.setMemberEmail(memberEmail);
+		dto.setMemberPw("kakao");
+		dto.setMemberClass("1");
+		dto.setMemberBirth("");
+		dto.setMemberPhone("");
+		
+		System.out.println("dto >>>> " + dto);
+		
+		List<MemberDTO> list = managerMemberService.searchIdName(dto); // 아이디로 회원 목록 조회
+		
+		HttpSession session = request.getSession();
+		
+		if(list.size() == 0) { // 아이디 조회 후 회원이 아니라면 회원가입 진행
+			System.out.println("회원가입 진행 >>> ");
+			session.setAttribute("memberInfo", dto);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/member/memberJoin.do");
+			dispatcher.forward(request, response);
+		}else {
+			MemberDTO member = memberService.memberLogin(dto);
+			
+			session.setAttribute("member", member);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/car/indexForm.do");
+			dispatcher.forward(request, response);
+		}
+		
 	}
 	
 }
